@@ -1,3 +1,9 @@
+* {
+  cursor: url("/css/糰子.cur"), auto !important;
+}
+:active {
+  cursor: url("/css/糰子.cur"), auto !important;
+}
 body {
   background-color: #34495e;
   margin: 0px;
@@ -44,6 +50,7 @@ a:hover {
 #menu-outer,
 #container {
   background-color: #fff;
+  opacity: 0.88;
 }
 #menu-outer,
 #bottom-outer,
