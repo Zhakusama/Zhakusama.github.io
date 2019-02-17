@@ -5,6 +5,7 @@
 
 
 
+
 <!doctype html>
 <html lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
@@ -35,6 +36,18 @@
 </head>
 
 <body>
+
+ <!--动态线条背景-->
+ <script type="text/javascript" color="196,0,196" opacity="0.3" zindex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+ </script>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+ 
+
 <div class="side-navigate hide-area">
   
   
@@ -128,6 +141,7 @@
       
     </div>
   </div>
+  
 
   <div id="bottom-outer">
     <div id="bottom-inner">
@@ -142,7 +156,7 @@
 </div>
 
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=1344321235&auto=1&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=28445796&auto=1&height=32"></iframe>
 <div id="user-card">
   <div class="center-field">
     <img class="avatar" src="https://zwardtooommy.github.io/2019/02/14/image/avatar.jpg">
@@ -278,6 +292,14 @@ $(".video-container iframe").each(function(i){
 });
 plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
 </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/noir_classic.model.json"},"display":{"position":"lift","width":150,"height":250},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"position":"left","width":10000,"height":250,"jsonPath":"/live2dw/assets/nepgear.model.json"},"mobile":{"show":true},"log":false});</script></body>
 </html>
+
+
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+<!--人体时钟背景透明-->
+<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
 
