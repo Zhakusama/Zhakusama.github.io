@@ -1,9 +1,6 @@
 
 
 
-  
-
-
 
 
 
@@ -21,7 +18,7 @@
   
     <meta name="description" content="✧ 為你譜辰光熹微 ✧">
   
-  <title>归档 [ 夜風柔吹 ]</title>
+  <title> [ 夜風柔吹 ]</title>
   
   
     <link rel="shortcut icon" href="/logo2.ico">
@@ -37,188 +34,64 @@
   
 </head>
 
-<body>
-
- <!--动态线条背景-->
- <script type="text/javascript" color="196,0,196" opacity="0.3" zindex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
- </script>
-
-
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-
- 
-
-<div class="side-navigate hide-area">
-  
-  
-</div>
-<div id="outer-container" class="hide-area">
-<div id="container">
-  <div id="menu-outer" class="slide-down">
-    <div id="menu-inner">
-      <div id="brand">
-        
-        <a onclick="openUserCard()">
-          <img id="avatar" src="https://zwardtooommy.github.io/2019/02/14/image/avatar.jpg">
-          <div id="homelink">夜風柔吹</div>
-        </a>
-      </div>
-      <div id="menu-list">
-        <ul>
-        
-        
-          
-            <li>
-          
-            <a href="/index.html">Home</a>
-            
-          </li>
-        
-          
-            <li class="active">
-          
-            <a href="/archives">Archives</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/tags">Tags</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/categories">Categories</a>
-            
-          </li>
-        
-          
-            <li>
-          
-            <a href="/about">About</a>
-            
-          </li>
-        
-        </ul>
-      </div>
-      <div id="show-menu">
-        <button>Menu</button>
-      </div>
+<div class="random-center hide-area">
+  <div id="random-index">
+    <div class="center-field">
+      <img class="avatar" src="https://zwardtooommy.github.io/2019/02/14/image/avatar.jpg" width="120" height="120" onclick="openUserCard()">
     </div>
-  </div>
-
-  <div id="content-outer">
-    <div id="content-inner">
-      
-      
-  <article>
-    
-
-  <div id="recent-posts">
-    <h1>归档
-    
-        <span class="posts-count">
-        共
-        1
-        
-            文章
-        
-        </span>
-    
-    </h1>
-    
-    
-        
-        
-            
-        
-        
-    
-    
-    
-        
-        
-            
-            <h3 class="archive-year-title">2019
-            
-                <span class="posts-count">
-                共
-                1
-                
-                    文章
-                
-                </span>
-            
-            </h3>
-        
-        <div class="post-title-item">
-  
-  <a href="/2019/02/17/啟程嘻嘻/">
-  
-    啟程嘻嘻
-  
-  </a>
-  <p class="page-title-sub">
-    <span id="post-title-date">2-17</span>
-    
-    <span id="post-title-categories">分类
-    
-    
-      
-      
-      <a href="/categories/關於博客/">關於博客</a>
-    
-    </span>
-    
-    
-    <span id="post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/博客日誌/">博客日誌</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-    
-  </div>
-
-
-  </article>
-
-      
-      
+    <div class="center-field">
+      <div class="title" onclick="openUserCard()">夜風柔吹</div>
+      <div class="sub-title" onclick="openUserCard()"></div>
     </div>
-  </div>
+    <hr>
+    <div class="center-field">
+      <ul class="index-nav-link">
+        
+        
+          
+            <li><a href="/index.html">Home</a></li>
+          
+        
+          
+            <li><a href="/archives">Archives</a></li>
+          
+        
+          
+            <li><a href="/tags">Tags</a></li>
+          
+        
+          
+            <li><a href="/categories">Categories</a></li>
+          
+        
+          
+            <li><a href="/about">About</a></li>
+          
+        
+      </ul>
+      <ul class="social-icon">
   
-
-  <div id="bottom-outer">
-    <div id="bottom-inner">
-      Site by Z_Haku using
-      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
-      <br>
-      
+  
+    <li>
+      <a href="https://github.com/Zhakusama">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="mailto:yowanehakusama@qq.com">
+        
+          M
+        
+      </a>
+    </li>
+  
+</ul>
     </div>
   </div>
 </div>
-
-</div>
-
-
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=28445796&auto=1&height=32"></iframe>
 
 <div id="user-card">
@@ -313,6 +186,8 @@ var unsplashConfig = {"blur":true,"gravity":"center","greyscale":false};
 // is show background images
 var turnoffBackgroundImage = false;
 
+  turnoffBackgroundImage = true;
+
 
 
 
@@ -355,14 +230,6 @@ $(".video-container iframe").each(function(i){
 });
 plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
 </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"position":"left","width":10000,"height":250,"jsonPath":"/live2dw/assets/nepgear.model.json"},"mobile":{"show":true},"log":false});</script></body>
+
 </html>
-
-
-
-<!--浏览器搞笑标题-->
-<script type="text/javascript" src="\js\FunnyTitle.js"></script>
-
-<!--人体时钟背景透明-->
-<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
 
