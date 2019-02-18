@@ -118,7 +118,7 @@
     
     
       <h1 class="center-title">categories</h1>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/關於OI/">關於OI</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/關於博客/">關於博客</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/關於OI/">關於OI</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/關於博客/">關於博客</a><span class="category-list-count">1</span></li></ul>
     
   </article>
 
@@ -201,6 +201,32 @@ var isTriggerAnalytics = !( true && isIgnoreHost );
 
 </script>
 
+  <script>
+if(isTriggerAnalytics) {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?true";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
+</script>
+
+
+
+  <script>
+if(isTriggerAnalytics) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'true', 'auto');
+  ga('send', 'pageview');
+}
+
+</script>
 
 
 
@@ -246,7 +272,7 @@ var isTriggerAnalytics = !( true && isIgnoreHost );
   $(".fancybox").fancybox();
 
 var vegasConfig = {"preload�Image":true,"transition":["flash"],"timer":true,"delay":300000,"shuffle":false,"count":12};
-var unsplashConfig = {"blur":true,"gravity":"center","greyscale":false};
+var unsplashConfig = {"blur":true,"gravity":"center","greyscale":true};
 // is show background images
 var turnoffBackgroundImage = false;
 
