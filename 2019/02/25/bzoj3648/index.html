@@ -1,0 +1,446 @@
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Z_Haku">
+  
+  
+  
+  
+    <meta name="description" content="寢室管理
+Time limit : 1sec / Memory limit : 512MBDescriptionT64有一个好朋友，叫T128。T128是寄宿生，并且最近被老师叫过去当宿管了。宿管可不是一件很好做的工作，碰巧T128有一个工作上的问题想请T64帮忙解决。T128的寝室条件不是很好，所以没有很多钱来装修。礼间寝室仅由n-1条双向道路连接，而且任意两间寝室之间都可以互达。最近，T...">
+  
+  <title>bzoj3648 [ 夜風柔吹 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/logo2.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"> 
+  <style>
+    .pace .pace-progress {
+    	background: #FF00FF; /*进度条颜色*/
+		height: 3px;
+	}
+	.pace .pace-progress-inner {
+    	box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/ 
+	}
+	.pace .pace-activity {
+	     border-top-color: #1E92FB;    /*上边框颜色*/
+		 border-left-color: #1E92FB;    /*左边框颜色*/
+	}
+  </style>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<body>
+
+ <!--动态线条背景-->
+ <script type="text/javascript" color="196,0,196" opacity="0.3" zindex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+ </script>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+ 
+
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2019/02/24/最小质因数/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        最小质因数
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+          <div id="homelink">夜風柔吹</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>bzoj3648</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2019-02-25</span>
+      
+        <span id="post-title-updated">修改于 2019-02-25</span>
+      
+      
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/關於OI/">關於OI</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/點分治/">點分治</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/樹狀數組/">樹狀數組</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/基環樹/">基環樹</a>
+      
+      </span>
+      
+    </p>
+    
+    <h1 id="寢室管理"><a href="#寢室管理" class="headerlink" title="寢室管理"></a>寢室管理</h1><hr>
+<h5 id="Time-limit-1sec-Memory-limit-512MB"><a href="#Time-limit-1sec-Memory-limit-512MB" class="headerlink" title="Time limit : 1sec / Memory limit : 512MB"></a>Time limit : 1sec / Memory limit : 512MB</h5><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>T64有一个好朋友，叫T128。T128是寄宿生，并且最近被老师叫过去当宿管了。宿管可不是一件很好做的工作，碰巧T128有一个工作上的问题想请T64帮忙解决。T128的寝室条件不是很好，所以没有很多钱来装修。礼间寝室仅由n-1条双向道路连接，而且任意两间寝室之间都可以互达。最近，T128被要求对一条路径上的所有寝室进行管理，这条路径不会重复经过某个点或某条边。但他不记得是哪条路径了。他只记得这条路径上有不少于k个寝室。于是，他想请T64帮忙数一下，有多少条这样的路径满足条件。嗯…还有一个问题。由于最近有一些熊孩子不准晚上讲话很不爽，他们决定修筑一条“情报通道”，如果通道建成，寝室就变成了一个N个点N条边的无向图。并且，经过“情报通道”的路径也是合法的。T128心想：通道建成之前，T64还有一个高效的算法帮我数路径条数，但是通道建成之后，他还有办法吗？对，T64手忙脚乱，根本数不清有多少条路径。于是他找到了你。</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>第一行为三个正整数N，M，K（2 ≤ K ≤ N），代表有n间寝室，m条边连接它们n-1 ≤ m ≤ N；m= n-1意味着“情报遁道”未被修好；m=n意味着“情报通道”已被修好），以及题目描述中的K。</p>
+<p>接下来m行，每行两个正整数z，y，代表第x间寝室与第y间寝室之间有一条双向边。</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>仅包含一个整数，代表经过至少K间寝室的路径条数。</p>
+<hr>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><blockquote>
+<p>5 5 2<br>1 3<br>2 4<br>3 5<br>4 1<br>5 2</p>
+</blockquote>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><blockquote>
+<p>20</p>
+</blockquote>
+<hr>
+<p> N≤100000      </p>
+<p> K≤N</p>
+<p> M=N        </p>
+<hr>
+<p><em>以上原題</em></p>
+<hr>
+<h2 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h2><p>求基環樹距離不小於k的路徑數</p>
+<hr>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>首先樹上的情況是點分治模板題，我們可以用樹狀數組或排序+雙指針做</p>
+<p>對於基環樹，一般的做法有拆環邊，然後討論強制選和強制不選</p>
+<p>強制不選就是樹上問題了</p>
+<p>強制選我們就只需繞著環走一遍，因為每次移動一條邊改變的距離是可以直接維護的</p>
+<p>這題樹上排序用桶排複雜度就可以降下一個log</p>
+<hr>
+<h2 id="代碼"><a href="#代碼" class="headerlink" title="代碼"></a>代碼</h2><p>附上ysy大爺提供的代碼</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100010</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">int</span>&amp;a)</span></span>&#123;<span class="keyword">char</span> c;<span class="keyword">while</span>(!(((c=getchar())&gt;=<span class="string">'0'</span>)&amp;&amp;(c&lt;=<span class="string">'9'</span>)));a=c-<span class="string">'0'</span>;<span class="keyword">while</span>(((c=getchar())&gt;=<span class="string">'0'</span>)&amp;&amp;(c&lt;=<span class="string">'9'</span>))(a*=<span class="number">10</span>)+=c-<span class="string">'0'</span>;&#125;</span><br><span class="line"><span class="keyword">int</span> n,m,K,i,x,y,g[N],nxt[N&lt;&lt;<span class="number">1</span>],v[N&lt;&lt;<span class="number">1</span>],ok[N&lt;&lt;<span class="number">1</span>],ed=<span class="number">1</span>,son[N],f[N],size,now,fa[N],exa,exb,to[N],way[N],cnt,in[N],dis[N],t[N],pos;</span><br><span class="line">ll ans,bit[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;v[++ed]=y,nxt[ed]=g[x],ok[ed]=<span class="number">1</span>,g[x]=ed;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">F</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> fa[x]==x?x:fa[x]=F(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">for</span>(;x&lt;=n;x+=x&amp;-x)<span class="keyword">if</span>(t[x]!=pos)t[x]=pos,bit[x]=<span class="number">1</span>;<span class="keyword">else</span> bit[x]++;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">for</span>(;x&lt;=n;x+=x&amp;-x)bit[x]--;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">sum</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">if</span>(x&lt;<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;ll y=<span class="number">0</span>;<span class="keyword">for</span>(;x;x-=x&amp;-x)<span class="keyword">if</span>(t[x]==pos)y+=bit[x];<span class="keyword">return</span> y;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">findroot</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pre)</span></span>&#123;</span><br><span class="line">  son[x]=<span class="number">1</span>;f[x]=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=g[x];i;i=nxt[i])<span class="keyword">if</span>(ok[i]&amp;&amp;v[i]!=pre)&#123;</span><br><span class="line">    findroot(v[i],x);</span><br><span class="line">    son[x]+=son[v[i]];</span><br><span class="line">    <span class="keyword">if</span>(son[v[i]]&gt;f[x])f[x]=son[v[i]];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(size-son[x]&gt;f[x])f[x]=size-son[x];</span><br><span class="line">  <span class="keyword">if</span>(f[x]&lt;f[now])now=x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfscal</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pre,<span class="keyword">int</span> dep)</span></span>&#123;</span><br><span class="line">  ans+=sum(n)-sum(K-dep<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=g[x];i;i=nxt[i])<span class="keyword">if</span>(ok[i]&amp;&amp;v[i]!=pre)dfscal(v[i],x,dep+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfsadd</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pre,<span class="keyword">int</span> dep)</span></span>&#123;</span><br><span class="line">  add(dep+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=g[x];i;i=nxt[i])<span class="keyword">if</span>(ok[i]&amp;&amp;v[i]!=pre)dfsadd(v[i],x,dep+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  pos++,add(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">for</span>(i=g[x];i;i=nxt[i])<span class="keyword">if</span>(ok[i])dfscal(v[i],x,<span class="number">1</span>),dfsadd(v[i],x,<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">for</span>(i=g[x];i;i=nxt[i])<span class="keyword">if</span>(ok[i])ok[i^<span class="number">1</span>]=<span class="number">0</span>,f[<span class="number">0</span>]=size=son[v[i]],findroot(v[i],now=<span class="number">0</span>),solve(now);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">path</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pre,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">  to[x]=pre,add(dis[x]=d);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=g[x];i;i=nxt[i])<span class="keyword">if</span>(v[i]!=pre)path(v[i],x,d+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">treecal</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pre,<span class="keyword">int</span> d)</span></span>&#123;</span><br><span class="line">  ans+=sum(n)-sum(K-d<span class="number">-1</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=g[x];i;i=nxt[i])<span class="keyword">if</span>(v[i]!=pre&amp;&amp;!in[v[i]])treecal(v[i],x,d+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">treedel</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> pre)</span></span>&#123;</span><br><span class="line">  del(dis[x]);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i=g[x];i;i=nxt[i])<span class="keyword">if</span>(v[i]!=pre&amp;&amp;!in[v[i]])treedel(v[i],x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"path.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"path.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">  read(n),read(m),read(K);</span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)fa[i]=i;</span><br><span class="line">  <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">    read(x),read(y);</span><br><span class="line">    <span class="keyword">if</span>(F(x)==F(y))exa=x,exb=y;<span class="keyword">else</span> fa[fa[x]]=fa[y],addedge(x,y),addedge(y,x);</span><br><span class="line">  &#125;</span><br><span class="line">  f[<span class="number">0</span>]=size=n,findroot(<span class="number">1</span>,now=<span class="number">0</span>),solve(now);</span><br><span class="line">  <span class="keyword">if</span>(exa)&#123;</span><br><span class="line">    pos++,path(exa,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=exb;i;i=to[i])in[way[++cnt]=i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;cnt;i++)treedel(way[i],<span class="number">0</span>),treecal(way[i],<span class="number">0</span>,i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans),<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#寢室管理"><span class="toc-text">寢室管理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Time-limit-1sec-Memory-limit-512MB"><span class="toc-text">Time limit : 1sec / Memory limit : 512MB</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Output"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代碼"><span class="toc-text">代碼</span></a></li>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2019/02/24/最小质因数/" class="next">下一篇 最小质因数 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+  
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Z_Haku using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+  
+  <div class="theme-info">
+      <div class="powered-by"></div>
+      <span class="post-count">   这个博客一共有4.2k个字哟</span>
+  
+  
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=28445796&auto=1&height=32"></iframe>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+    <p id="description">✧ 為你譜辰光熹微 ✧</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/Zhakusama">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="mailto:yowanehakusama@qq.com">
+        
+          M
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/timg.jpg');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload�Image":true,"transition":["flash"],"timer":true,"delay":300000,"shuffle":false,"count":12};
+var unsplashConfig = {"blur":true,"gravity":"center","greyscale":true};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"position":"left","width":10000,"height":250,"jsonPath":"/live2dw/assets/nepgear.model.json"},"mobile":{"show":true},"log":false});</script></body>
+</html>
+
+
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+
+
