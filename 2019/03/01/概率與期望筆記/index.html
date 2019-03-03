@@ -17,9 +17,14 @@
   
   
   
-    <meta name="description" content="✧ 為你譜辰光熹微 ✧">
+    <meta name="description" content="概率的性质
+
+1.非负性：对于每一个事件A，0≤P(A)≤1。
+2.规范性：对于必然事件S，P(S)=1。对于不可能事件，P(A)=0。
+3.容斥性：对于任意两个事件A和B，P(A∪B)=P(A)+P(B)-P(A∩B)。
+4.互斥事件的可加性：设A1，A2，……An是互斥的n个事件，则P(A1∪A2∪……An)=P(A1)+P(A2)+……P(An)。如果A和B互为对立事件，则事件A和B一...">
   
-  <title> [ 夜風柔吹 ]</title>
+  <title>概率與期望筆記 [ 夜風柔吹 ]</title>
   
   
     <link rel="shortcut icon" href="/logo2.ico">
@@ -165,17 +170,50 @@
   
 
   <article id="post">
-    <h1>空标题</h1>
+    <h1>概率與期望筆記</h1>
     <p class="page-title-sub">
       <span id="post-title-date">撰写于 2019-03-01</span>
       
         <span id="post-title-updated">修改于 2019-03-03</span>
       
       
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/關於OI/">關於OI</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/概率與期望/">概率與期望</a>
+      
+      </span>
       
     </p>
     
-    
+    <p><strong>概率的性质</strong></p>
+<blockquote>
+<p>1.非负性：对于每一个事件A，0≤P(A)≤1。</p>
+<p>2.规范性：对于必然事件S，P(S)=1。对于不可能事件，P(A)=0。</p>
+<p>3.容斥性：对于任意两个事件A和B，P(A∪B)=P(A)+P(B)-P(A∩B)。</p>
+<p>4.互斥事件的可加性：设A1，A2，……An是互斥的n个事件，则P(A1∪A2∪……An)=P(A1)+P(A2)+……P(An)。如果A和B互为对立事件，则事件A和B一定是互斥的，而A∪B为必然事件，所以，P(A∪B)=P(A)+P(B)=1，即对立事件概率之和为1。</p>
+<p>5.独立事件的可乘性：如果事件A是否发生对事件B发生的概率没有影响，同时事件B是否发生对事件A发生的概率也没有影响，则称A与B是相互独立的事件。有P(A∩B)=P(A)<em>P(B)，即两个相互独立事件同时发生的概率等于每个事件发生的概率的积。推广到n个相互独立的事件，则：P(A1∩A2∩……∩An)= P(A1)</em>P(A2)<em>……</em>P(An)。</p>
+<p>6.独立重复试验的“伯努利大数定理”：如果在一次试验中某事件发生的概率为p，不发生的概率为q，则在n次试验中该事件至少发生m次的概率等于(p+q)n的展开式中从pn到包括pmqn-m为止的各项之和。如果在一次试验中某事件发生的概率为p，那么在n次独立重复试验中这个事件恰好发生k次（0≤k≤n）的概率为： C(n,k)<em>p^k</em>(1-p)^(n-k)。 </p>
+</blockquote>
+<p><strong>期望的性质 </strong></p>
+<blockquote>
+<p>1.期望的线性性：对于任意随机变量X和Y以及常量a和b，有：E(aX + bY) = aE(X) + bE(Y)。当两个随机变量X和Y独立且各自都有一个已定义的期望时，有：E(XY) = E(X)E(Y)。</p>
+<p>2.期望的和等于和的期望</p>
+</blockquote>
+
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
@@ -219,7 +257,7 @@
   
   <div class="theme-info">
       <div class="powered-by"></div>
-      <span class="post-count">   这个博客一共有5k个字哟</span>
+      <span class="post-count">   这个博客一共有5.5k个字哟</span>
   
   
 </div>
