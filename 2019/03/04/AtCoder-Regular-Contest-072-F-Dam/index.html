@@ -1,0 +1,427 @@
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Z_Haku">
+  
+  
+  
+  
+    <meta name="description" content="F - Dam這裡原題地址
+原題摘要Problem Statement
+You are in charge of controlling a dam. The dam can store at most L liters of water. Initially, the dam is empty. Some amount of water  flows into the dam every ...">
+  
+  <title>AtCoder Regular Contest 072 F Dam [ 夜風柔吹 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/logo2.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"> 
+  <style>
+    .pace .pace-progress {
+    	background: #FF00FF; /*进度条颜色*/
+		height: 3px;
+	}
+	.pace .pace-progress-inner {
+    	box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/ 
+	}
+	.pace .pace-activity {
+	     border-top-color: #1E92FB;    /*上边框颜色*/
+		 border-left-color: #1E92FB;    /*左边框颜色*/
+	}
+  </style>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<body>
+
+ <!--动态线条背景-->
+ <script type="text/javascript" color="196,0,196" opacity="0.3" zindex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+ </script>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+ 
+
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2019/03/01/概率與期望筆記/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        概率與期望筆記
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+          <div id="homelink">夜風柔吹</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>AtCoder Regular Contest 072 F Dam</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2019-03-04</span>
+      
+        <span id="post-title-updated">修改于 2019-03-04</span>
+      
+      
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/關於OI/">關於OI</a>
+      
+      </span>
+      
+      
+    </p>
+    
+    <h1 id="F-Dam"><a href="#F-Dam" class="headerlink" title="F - Dam"></a>F - Dam</h1><h3 id="這裡原題地址"><a href="#這裡原題地址" class="headerlink" title="這裡原題地址"></a><a href="https://atcoder.jp/contests/arc072/tasks/arc072_d" target="_blank" rel="noopener">這裡原題地址</a></h3><hr>
+<h3 id="原題摘要"><a href="#原題摘要" class="headerlink" title="原題摘要"></a>原題摘要</h3><h4 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h4><blockquote>
+<p>You are in charge of controlling a dam. The dam can store at most L liters of water. Initially, the dam is empty. Some amount of water  flows into the dam every morning, and any amount of water may be  discharged every night, but this amount needs to be set so that no water  overflows the dam the next morning.</p>
+</blockquote>
+<blockquote>
+<p>It is known that vi liters of water at ti degrees Celsius will flow into the dam on the morning of the i-th  day. You are wondering about the maximum possible temperature of water in the  dam at noon of each day, under the condition that there needs to be  exactly L liters of water in the dam at that time. For each i, find the maximum possible temperature of water in the dam at noon of the i-th  day. Here, consider each maximization separately, that is, the amount  of water discharged for the maximization of the temperature on the i-th day, may be different from the amount of water discharged for the maximization of the temperature on the j-th day (j≠i).</p>
+</blockquote>
+<blockquote>
+<p>Also, assume that the temperature of water is not affected by anything but new water that flows into the dam. That is, when V1 liters of water at T1 degrees Celsius and V2 liters of water at T2 degrees Celsius are mixed together, they will become V1+V2 liters of water at T1∗V1+T2∗V2V1+V2 degrees Celsius, and the volume and temperature of water are not affected by any other factors.</p>
+</blockquote>
+<h4 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h4><blockquote>
+<p>1≤N≤5∗10^5</p>
+<p>1≤L≤10^9</p>
+<p>0≤ti≤10^9(1≤i≤N)</p>
+<p>1≤vi≤L(1≤i≤N)</p>
+<p>v1=L</p>
+<p>L, each ti and vi are integers.</p>
+</blockquote>
+<hr>
+<h3 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h3><p>有個最多能存L單位水的水庫，一開始是空的，每天早上有vi單位ti溫度的水流入</p>
+<p>不同溫度混合後溫度為(Tx <em> Vx + Ty </em> Vy)/(Vx + Vy)，體積簡單相加</p>
+<p>每天晚上你可以放掉若乾水，必須保證第二天水庫不會溢出</p>
+<p>問每天水庫是滿的情況下最高水溫</p>
+<hr>
+<h3 id="部分分"><a href="#部分分" class="headerlink" title="部分分"></a>部分分</h3><p>對於這一題我們很容易想到簡單的二維部分分DP</p>
+<p>f i j表示第i天晚上水庫中水體積為j的最大溫度</p>
+<p>則f i j=max( calc( f i-1j-vi ) ,f i j+1)</p>
+<p>滿容時中午與晚上水溫相等，所以fiL即為答案</p>
+<h4 id="代碼大概長這樣"><a href="#代碼大概長這樣" class="headerlink" title="代碼大概長這樣"></a>代碼大概長這樣</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> db double</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5e6</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> C getchar()-48</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> s=<span class="number">0</span>,t=<span class="number">1</span>,k=C;</span><br><span class="line">  <span class="keyword">for</span> (;k&lt;<span class="number">0</span>||<span class="number">9</span>&lt;k;k=C) <span class="keyword">if</span> (k==<span class="number">-3</span>) t=<span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span> (;<span class="number">0</span>&lt;=k&amp;&amp;k&lt;=<span class="number">9</span>;k=C) s=(s&lt;&lt;<span class="number">1</span>)+(s&lt;&lt;<span class="number">3</span>)+k;</span><br><span class="line">  <span class="keyword">return</span> s*t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> n,m;</span><br><span class="line">  <span class="keyword">int</span> t[N],v[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">in</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    t[i]=read(),v[i]=read();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  db f[<span class="number">3000</span>][<span class="number">3000</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j=m;j&gt;=v[i];--j)</span><br><span class="line">        &#123;</span><br><span class="line">          db x=(f[i<span class="number">-1</span>][j-v[i]]*(db)(j-v[i])+(db)(t[i]*v[i]))/(db)(j);</span><br><span class="line">          f[i][j]=max(f[i][j],x);</span><br><span class="line">	    &#125;</span><br><span class="line">		  <span class="keyword">for</span> (<span class="keyword">int</span> j=m;--j;)</span><br><span class="line">		    f[i][j]=max(f[i][j],f[i][j+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.7lf\n"</span>,f[i][m]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  in();</span><br><span class="line">  wor();</span><br><span class="line">  out();</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#F-Dam"><span class="toc-text">F - Dam</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#這裡原題地址"><span class="toc-text">這裡原題地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原題摘要"><span class="toc-text">原題摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Problem-Statement"><span class="toc-text">Problem Statement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Constraints"><span class="toc-text">Constraints</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部分分"><span class="toc-text">部分分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代碼大概長這樣"><span class="toc-text">代碼大概長這樣</span></a></li></ol></li></ol></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2019/03/01/概率與期望筆記/" class="next">下一篇 概率與期望筆記 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+  
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Z_Haku using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+  
+  <div class="theme-info">
+      <div class="powered-by"></div>
+      <span class="post-count">   这个博客一共有6.2k个字哟</span>
+  
+  
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=28445796&auto=1&height=32"></iframe>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+    <p id="description">✧ 為你譜辰光熹微 ✧</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/Zhakusama">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="mailto:yowanehakusama@qq.com">
+        
+          M
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/timg.jpg');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload�Image":true,"transition":["flash"],"timer":true,"delay":300000,"shuffle":false,"count":12};
+var unsplashConfig = {"blur":true,"gravity":"center","greyscale":true};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"position":"left","width":10000,"height":250,"jsonPath":"/live2dw/assets/nepgear.model.json"},"mobile":{"show":true},"log":false});</script></body>
+</html>
+
+
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+
+
