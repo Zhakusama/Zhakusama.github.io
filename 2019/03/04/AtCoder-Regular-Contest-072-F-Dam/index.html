@@ -180,7 +180,7 @@ You are in charge of controlling a dam. The dam can store at most L liters of wa
     <p class="page-title-sub">
       <span id="post-title-date">撰写于 2019-03-04</span>
       
-        <span id="post-title-updated">修改于 2019-03-07</span>
+        <span id="post-title-updated">修改于 2019-03-15</span>
       
       
       <span id="post-title-categories">分类
@@ -235,7 +235,15 @@ You are in charge of controlling a dam. The dam can store at most L liters of wa
 <p>每天晚上你可以放掉若乾水，必須保證第二天水庫不會溢出</p>
 <p>問每天水庫是滿的情況下最高水溫</p>
 <hr>
-<h3 id="部分分"><a href="#部分分" class="headerlink" title="部分分"></a>部分分</h3><p>對於這一題我們很容易想到簡單的二維部分分DP</p>
+<h3 id="一個假做法"><a href="#一個假做法" class="headerlink" title="一個假做法"></a>一個假做法</h3><p> 考慮貪心取最大溫度水</p>
+<p>那麼水溫肯定是所有答案中最優的</p>
+<p>簡單解決了？？？</p>
+<p>但是發現可行性不一定</p>
+<p>水若是單調遞增的可以滿足</p>
+<p>若不是則比前一天小的水不能在前面的水拍完之前排掉，</p>
+<p>假假了</p>
+<hr>
+<h3 id="部分分"><a href="#部分分" class="headerlink" title="部分分"></a>部分分</h3><p>對於這一題我們其實很容易想到簡單的二維部分分DP</p>
 <p>f i j表示第i天晚上水庫中水體積為j的最大溫度</p>
 <p>則f i j=max( calc( f i-1j-vi ) ,f i j+1)</p>
 <p>滿容時中午與晚上水溫相等，所以fiL即為答案</p>
@@ -257,8 +265,7 @@ You are in charge of controlling a dam. The dam can store at most L liters of wa
 </li>
 </ul>
 <hr>
-<h3 id="瞎JB亂編"><a href="#瞎JB亂編" class="headerlink" title="瞎JB亂編"></a>瞎JB亂編</h3><p>特殊情況綜合一下。。。</p>
-<p>先考慮理想單調遞增態：一直取最後L體積水</p>
+<h3 id="瞎JB亂編"><a href="#瞎JB亂編" class="headerlink" title="瞎JB亂編"></a>瞎JB亂編</h3><p>先考慮理想單調遞增態：一直取最後L體積水</p>
 <p>那麼有不單調的水出現呢，這裡後出現的水不能刪掉</p>
 <p>按題意應該混合了，我們把不滿足單調性的水一直向前合併，直至單調</p>
 <p>然後就都變成單調了</p>
@@ -270,8 +277,8 @@ You are in charge of controlling a dam. The dam can store at most L liters of wa
 <h3 id="原因呢"><a href="#原因呢" class="headerlink" title="原因呢"></a>原因呢</h3><p>咕咕咕</p>
 <p>咳咳</p>
 <p>對於可行性比較好想</p>
-<p>每次新水一定取到</p>
-<p>隊中每天完整的水肯定可取，而殘的只有隊首</p>
+<p>能保證每次新水一定取到，容量一定不超出</p>
+<p>對於隊中的水每天完整的水肯定可取，而殘的只有隊首</p>
 <p>殘的是原來在隊中完整的，也就是原來可行，而且是在隊首，只要只有這些水時放就可以達到</p>
 <p>對於最優性感性理解一下</p>
 <p>咳咳</p>
@@ -279,6 +286,7 @@ You are in charge of controlling a dam. The dam can store at most L liters of wa
 <p>對於低溫水，在前面我們肯定直接丟掉</p>
 <p>在後面我們只能降低它的影響</p>
 <p>我們能做到最好的情況也就是它與之前的水等比例下降，也就是先混再排</p>
+<p>還要使之後可行並且影響最小，就是剛單調時</p>
 <p>emmm 其實最好自己感受一下過程</p>
 <hr>
 <h3 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h3><p>首先我們部分分要拿好</p>
@@ -295,7 +303,7 @@ You are in charge of controlling a dam. The dam can store at most L liters of wa
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#F-Dam"><span class="toc-text">F - Dam</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#這裡原題地址"><span class="toc-text">這裡原題地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原題摘要"><span class="toc-text">原題摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Problem-Statement"><span class="toc-text">Problem Statement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Constraints"><span class="toc-text">Constraints</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部分分"><span class="toc-text">部分分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代碼大概長這樣"><span class="toc-text">代碼大概長這樣</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些特征（不管有沒有用）"><span class="toc-text">一些特征（不管有沒有用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#瞎JB亂編"><span class="toc-text">瞎JB亂編</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AC代碼"><span class="toc-text">AC代碼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原因呢"><span class="toc-text">原因呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#總結"><span class="toc-text">總結</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#F-Dam"><span class="toc-text">F - Dam</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#這裡原題地址"><span class="toc-text">這裡原題地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原題摘要"><span class="toc-text">原題摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Problem-Statement"><span class="toc-text">Problem Statement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Constraints"><span class="toc-text">Constraints</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一個假做法"><span class="toc-text">一個假做法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部分分"><span class="toc-text">部分分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代碼大概長這樣"><span class="toc-text">代碼大概長這樣</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些特征（不管有沒有用）"><span class="toc-text">一些特征（不管有沒有用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#瞎JB亂編"><span class="toc-text">瞎JB亂編</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AC代碼"><span class="toc-text">AC代碼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原因呢"><span class="toc-text">原因呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#總結"><span class="toc-text">總結</span></a></li></ol></li></ol>
   </div>
 </div>
 
@@ -334,7 +342,7 @@ You are in charge of controlling a dam. The dam can store at most L liters of wa
   
   <div class="theme-info">
       <div class="powered-by"></div>
-      <span class="post-count">Zhauku一共写了8.6k个字呢</span>
+      <span class="post-count">Zhauku一共写了8.7k个字呢</span>
       
   
 </div>
