@@ -2,8 +2,6 @@
 
 
 
-  
-
 
 
 
@@ -19,9 +17,10 @@
   
   
   
-    <meta name="description" content="✧ 為你譜辰光熹微 ✧">
+    <meta name="description" content="恐狼后卫题目描述
+著名卡牌游戏《石炉传说》中有一张随从牌：恐狼后卫。恐狼后卫的能力是使得相邻随从的攻击力提高。现在有n张恐狼后卫顺序排成一排，第i只恐狼后卫的攻击力为a[i]，血量为h[i]，提升相邻随从的攻击力值为b[i]。你的攻击力为atk，每次攻击你可以选择一只存活的恐狼后卫，减少其血量值atk。若其血量小于等于0，则该恐狼后卫死亡。当某只恐狼后卫死亡时，其左右两侧（若存在）的恐狼后卫...">
   
-  <title>标签: 貪心 [ 愿 夜風柔吹 ]</title>
+  <title>恐狼后卫 [ 愿 夜風柔吹 ]</title>
   
   
     <link rel="shortcut icon" href="/logo2.ico">
@@ -92,6 +91,15 @@
 <div class="side-navigate hide-area">
   
   
+    <div class="item next">
+      <a href="/2019/03/11/最小直徑/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        最小直徑
+      </div>
+    </div>
+  
 </div>
 <div id="outer-container" class="hide-area">
 <div id="container">
@@ -123,7 +131,7 @@
           </li>
         
           
-            <li class="active">
+            <li>
           
             <a href="/tags">Tags</a>
             
@@ -155,171 +163,92 @@
     <div id="content-inner">
       
       
-  <div id="tag">
-    <h1>貪心</h1>
-    
-      
-      
-        
-      
-        
-          
-        
-      
-      
-      <div class="post-title-item">
   
-  <a href="/2019/03/04/AtCoder-Regular-Contest-072-F-Dam/">
-  
-    AtCoder Regular Contest 072 F Dam
-  
-  </a>
-  <p class="page-title-sub">
-    <span id="post-title-date">3-4</span>
-    
-    <span id="post-title-categories">分类
-    
-    
+
+  <article id="post">
+    <h1>恐狼后卫</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2019-03-17</span>
+      
+        <span id="post-title-updated">修改于 2019-03-17</span>
       
       
-      <a href="/categories/關於OI/">關於OI</a>
-    
-    </span>
-    
-    
-    <span id="post-title-tags">
-    标签
-    
-    
-      
-      
-      <a href="/tags/單調隊列/">單調隊列</a>
-    
-      
-        /
-      
-      
-      <a href="/tags/貪心/">貪心</a>
-    
-    </span>
-    
-    
-      <br>
-      
-      
-    
-  </p>
-  
-</div>
-      
-    
+      <span id="post-title-categories">分类
       
       
         
+        
+        <a href="/categories/關於OI/">關於OI</a>
+      
+      </span>
       
       
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/区间dp/">区间dp</a>
+      
+      </span>
+      
+    </p>
     
-      
-      
-        
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-      
-    
-      
-      
-        
-      
-        
-      
-      
-    
+    <h1 id="恐狼后卫"><a href="#恐狼后卫" class="headerlink" title="恐狼后卫"></a>恐狼后卫</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>著名卡牌游戏《石炉传说》中有一张随从牌：恐狼后卫。恐狼后卫的能力是使得相邻随从的攻击力提高。现在有n张恐狼后卫顺序排成一排，第i只恐狼后卫的攻击力为a[i]，血量为h[i]，提升相邻随从的攻击力值为b[i]。你的攻击力为atk，每次攻击你可以选择一只存活的恐狼后卫，减少其血量值atk。若其血量小于等于0，则该恐狼后卫死亡。当某只恐狼后卫死亡时，其左右两侧（若存在）的恐狼后卫会靠拢并成为相邻关系。在攻击第i只恐狼后卫时，除了要承受这只恐狼后卫自身的攻击力a[i]之外，还要承受与其相邻的2张恐狼后卫的提高攻击力值b[i-1]和b[i+1]（若存在）。你的任务是承受最少的总伤害杀死所有恐狼后卫，输出需承受的伤害值。</p>
+</blockquote>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><blockquote>
+<p>第一行一个正整数n，表示恐狼后卫的数量。</p>
+<p>第二行一个正整数atk，表示你的攻击力。</p>
+<p>以下n行，每行3个值：a[i]、b[i]、h[i]，分别表示第i只恐狼后卫自身的攻击力值、提升相邻随从的攻击力值、血量值。</p>
+</blockquote>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><blockquote>
+<p>一个整数，表示杀死所有恐狼后卫需要承受的最少伤害值。</p>
+</blockquote>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><blockquote>
+<p>3</p>
+<p>1</p>
+<p>8 1 6</p>
+<p>3 5 7</p>
+<p>4 9 2</p>
+</blockquote>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><blockquote>
+<p>94</p>
+</blockquote>
+<h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><blockquote>
+<p>对于30%的数据，n &lt;= 10</p>
+<p>对于另外30%的数据，n &lt;= 100, h[i] = 1</p>
+<p>对于100%的数据，n &lt;= 400，atk、a[i]、b[i]、h[i] &lt;= 1000</p>
+</blockquote>
+<hr>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#恐狼后卫"><span class="toc-text">恐狼后卫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据范围"><span class="toc-text">数据范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题解"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li></ol>
   </div>
+</div>
 
   
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2019/03/11/最小直徑/" class="next">下一篇 最小直徑 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
 
       
       
