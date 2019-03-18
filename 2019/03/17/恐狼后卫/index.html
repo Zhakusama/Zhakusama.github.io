@@ -17,8 +17,9 @@
   
   
   
-    <meta name="description" content="恐狼后卫题目描述
-著名卡牌游戏《石炉传说》中有一张随从牌：恐狼后卫。恐狼后卫的能力是使得相邻随从的攻击力提高。现在有n张恐狼后卫顺序排成一排，第i只恐狼后卫的攻击力为a[i]，血量为h[i]，提升相邻随从的攻击力值为b[i]。你的攻击力为atk，每次攻击你可以选择一只存活的恐狼后卫，减少其血量值atk。若其血量小于等于0，则该恐狼后卫死亡。当某只恐狼后卫死亡时，其左右两侧（若存在）的恐狼后卫...">
+    <meta name="description" content="恐狼后卫前記 考場上我覺得400的數據量只能國O(n^2)，甚至有點懸！真實嗶*
+题目描述
+著名卡牌游戏《石炉传说》中有一张随从牌：恐狼后卫。恐狼后卫的能力是使得相邻随从的攻击力提高。现在有n张恐狼后卫顺序排成一排，第i只恐狼后卫的攻击力为a[i]，血量为h[i]，提升相邻随从的攻击力值为b[i]。你的攻击力为atk，每次攻击你可以选择一只存活的恐狼后卫，减少其血量值atk。若其血量小于等于...">
   
   <title>恐狼后卫 [ 愿 夜風柔吹 ]</title>
   
@@ -170,7 +171,7 @@
     <p class="page-title-sub">
       <span id="post-title-date">撰写于 2019-03-17</span>
       
-        <span id="post-title-updated">修改于 2019-03-17</span>
+        <span id="post-title-updated">修改于 2019-03-18</span>
       
       
       <span id="post-title-categories">分类
@@ -195,7 +196,8 @@
       
     </p>
     
-    <h1 id="恐狼后卫"><a href="#恐狼后卫" class="headerlink" title="恐狼后卫"></a>恐狼后卫</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+    <h1 id="恐狼后卫"><a href="#恐狼后卫" class="headerlink" title="恐狼后卫"></a>恐狼后卫</h1><h4 id="前記"><a href="#前記" class="headerlink" title="前記"></a>前記</h4><p> <del>考場上我覺得400的數據量只能國O(n^2)，甚至有點懸！真實嗶*</del></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
 <p>著名卡牌游戏《石炉传说》中有一张随从牌：恐狼后卫。恐狼后卫的能力是使得相邻随从的攻击力提高。现在有n张恐狼后卫顺序排成一排，第i只恐狼后卫的攻击力为a[i]，血量为h[i]，提升相邻随从的攻击力值为b[i]。你的攻击力为atk，每次攻击你可以选择一只存活的恐狼后卫，减少其血量值atk。若其血量小于等于0，则该恐狼后卫死亡。当某只恐狼后卫死亡时，其左右两侧（若存在）的恐狼后卫会靠拢并成为相邻关系。在攻击第i只恐狼后卫时，除了要承受这只恐狼后卫自身的攻击力a[i]之外，还要承受与其相邻的2张恐狼后卫的提高攻击力值b[i-1]和b[i+1]（若存在）。你的任务是承受最少的总伤害杀死所有恐狼后卫，输出需承受的伤害值。</p>
 </blockquote>
 <h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><blockquote>
@@ -222,15 +224,22 @@
 <p>对于100%的数据，n &lt;= 400，atk、a[i]、b[i]、h[i] &lt;= 1000</p>
 </blockquote>
 <hr>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><hr>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>這題數據範圍很小，支持O(n^3) =.=!!!</p>
+<p>首先對於一只狼，我們要麼不打，要麼把它打死，具體證明略</p>
+<p>感性理解一下，你把它留下來是為了在它之前幹掉別的吧，那不如先幹掉別的呢</p>
+<p>然後不連續的死狼被殺先後順序沒有關係</p>
+<p>那麼我們可以設dp方程f i j 表示左端狼為i右端狼為j且中間全被殺死的最小代價</p>
+<p>轉移時枚舉區間內最後一隻被殺的狼即可，可保證合法最優且不重不漏</p>
+<p>因為要殺死1到n所以答案在f 0 n 裡面</p>
+<hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">404</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> n,m;</span><br><span class="line">  <span class="keyword">int</span> a[N],b[N],h[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">in</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a[i]&gt;&gt;b[i]&gt;&gt;h[i],</span><br><span class="line">    h[i]=(h[i]<span class="number">-1</span>)/m+<span class="number">1</span>;<span class="comment">//轉刀數</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> f[N][N];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> r (l+t-1)</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">memset</span>(f,<span class="number">0x1f</span>,<span class="keyword">sizeof</span> f);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i=++n;~--i;)<span class="comment">//要算到n+1所以++n</span></span><br><span class="line">    f[i][i+<span class="number">1</span>]=<span class="number">0</span>;<span class="comment">//初值，中間沒狼不用代價</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> t=<span class="number">2</span>;++t&lt;=n+<span class="number">1</span>;)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l=<span class="number">0</span>;r&lt;=n;++l)</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> k=l;++k&lt;r;)</span><br><span class="line">        f[l][r]=min(f[l][r],f[l][k]+f[k][r]+(a[k]+b[l]+b[r])*h[k]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;f[<span class="number">0</span>][n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  freopen(<span class="string">"wolf.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">  freopen(<span class="string">"wolf.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">  in();</span><br><span class="line">  wor();</span><br><span class="line">  out();</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#恐狼后卫"><span class="toc-text">恐狼后卫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据范围"><span class="toc-text">数据范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题解"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#恐狼后卫"><span class="toc-text">恐狼后卫</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前記"><span class="toc-text">前記</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据范围"><span class="toc-text">数据范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题解"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
   </div>
 </div>
 
@@ -267,7 +276,7 @@
   
   <div class="theme-info">
       <div class="powered-by"></div>
-      <span class="post-count">Zhauku一共写了9.2k个字呢</span>
+      <span class="post-count">Zhauku一共写了9.6k个字呢</span>
       
   
 </div>
