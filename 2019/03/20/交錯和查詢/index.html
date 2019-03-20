@@ -1,0 +1,480 @@
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Z_Haku">
+  
+  
+  
+  
+    <meta name="description" content="交錯和查詢前記 這數據範圍真的惡心，分分鐘爆long long
+题目描述
+无限循环数字串S由长度为n的循环节s构成。设s为12345(n=5)，则数字串S为123451234512345…
+设Si为S的第i位数字，在上面的例子中，S1=1，S2=2，S6=1。
+设S的一个子串S[l,r]的交错和为sum(l,r)：
+sum(l,r) = Sl - S1+1 + Sl+2 - Sl+3 + …...">
+  
+  <title>交錯和查詢 [ 愿 夜風柔吹 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/logo2.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"> 
+  <style>
+    .pace .pace-progress {
+    	background: #FF00FF; /*进度条颜色*/
+		height: 3px;
+	}
+	.pace .pace-progress-inner {
+    	box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/ 
+	}
+	.pace .pace-activity {
+	     border-top-color: #1E92FB;    /*上边框颜色*/
+		 border-left-color: #1E92FB;    /*左边框颜色*/
+	}
+  </style>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<body>
+
+ <!--动态线条背景-->
+ <script type="text/javascript" color="196,0,196" opacity="0.3" zindex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+ </script>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+ 
+
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2019/03/17/恐狼后卫/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        恐狼后卫
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+          <div id="homelink">愿 夜風柔吹</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>交錯和查詢</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2019-03-20</span>
+      
+        <span id="post-title-updated">修改于 2019-03-20</span>
+      
+      
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/關於OI/">關於OI</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/樹狀數組/">樹狀數組</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/線段樹/">線段樹</a>
+      
+      </span>
+      
+    </p>
+    
+    <h1 id="交錯和查詢"><a href="#交錯和查詢" class="headerlink" title="交錯和查詢"></a>交錯和查詢</h1><h4 id="前記"><a href="#前記" class="headerlink" title="前記"></a>前記</h4><p> <del>這數據範圍真的惡心，分分鐘爆long long</del></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>无限循环数字串S由长度为n的循环节s构成。设s为12345(n=5)，则数字串S为123451234512345…</p>
+<p>设Si为S的第i位数字，在上面的例子中，S1=1，S2=2，S6=1。</p>
+<p>设S的一个子串S[l,r]的交错和为sum(l,r)：</p>
+<p>sum(l,r) = Sl - S1+1 + Sl+2 - Sl+3 + … + (-1)r-lSr</p>
+<p>如sum(2,7) = 2 - 3 + 4 - 5 + 1 - 2 = -3</p>
+<p>现给定循环节s，要求支持两种操作：</p>
+<p>1 pos digit：修改循环节s上的某一位，即将spos改为digit。</p>
+<p>2 l r：求S[l,r]内所有子串的交错和的和，即<img src="/2019/03/20/交錯和查詢/a.png" alt="a"></p>
+<p>输出ans对109+7的模。</p>
+</blockquote>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><blockquote>
+<p>第一行一个整数n，表示循环节s的长度。</p>
+<p>第二行一个长度为n的数字串，表示循环节s。</p>
+<p>第三行一个整数m，表示操作次数。</p>
+<p>以下m行，每行3个整数。</p>
+<p>​    若第一个数为1，表示是修改操作1 pos digit。</p>
+<p>​    若第一个数为2，表示是询问操作2 l r。</p>
+</blockquote>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><blockquote>
+<p>对于每个询问操作输出一行，表示答案。</p>
+</blockquote>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><blockquote>
+<p>5</p>
+<p>12345</p>
+<p>5</p>
+<p>2 1 5</p>
+<p>2 6 10</p>
+<p>1 3 5</p>
+<p>2 1 5</p>
+<p>2 1 6</p>
+</blockquote>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><blockquote>
+<p>19</p>
+<p>19</p>
+<p>25</p>
+<p>36</p>
+</blockquote>
+<h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><blockquote>
+<p>​    对于10%的数据点，n, m &lt;= 50；</p>
+<p>​    对于20%的数据点，n, m &lt;= 1000；</p>
+<p>​    对于40%的数据点，1 &lt;= l &lt;= r &lt;= n；</p>
+<p>​    对于100%的数据点，n, m &lt;= 200000；1 &lt;= l &lt;= r &lt;= 10^18；1 &lt;= pos &lt;= n；0 &lt;= digit &lt;= 9；</p>
+</blockquote>
+<hr>
+<ul>
+<li>题目原型：2014 ACM/ICPC牡丹江赛区网络赛</li>
+</ul>
+<hr>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
+<p>  对于40%的数据点，1 &lt;= l &lt;= r &lt;= n；</p>
+<p>此时n,m的大小上升为200000，但询问区间[l,r]只会落在第一个循环节内（即可认为是没有循环节的有限数字串）。使用线段树维护4种信息，分别是区间内奇/偶位置的和、区间内奇/偶位置与一等差数列的乘积的和。修改和查询操作的复杂度均为O(logn)。</p>
+<p>   对于100%的数据点，n, m &lt;= 200000；1 &lt;= l &lt;= r &lt;= 10^18；</p>
+<p>此时询问区间[l,r]可能横跨多个循环节。借助类似于分段算法的思想，将整个询问区间拆成三份：前缀、中间和后缀。其中前缀是询问区间[l,r]中第一小段不完整的部分（可为空）；中间部分是询问区间[l,r]中横跨的所有完整的循环节；后缀是询问区间[l,r]中最后一小段不完整的部分（可为空）。前缀和后缀部分的答案按照60%的数据点中的做法查询线段树即可。而中间部分的答案需要计算出横跨过的完整的循环节个数，并根据n与循环节个数的奇偶性的不同辅以不同的计算公式，其推导比较简单但有不少细节，可参见代码。</p>
+<p>此外，本题可以通过将循环节延长一倍使得n必定为偶数，这样做就可以避免n为奇数时还需使用不同的计算公式。不过这么做的话，线段树的规模扩大一倍，而且一个修改操作需要修改2次线段树。算法常数更大，选手可以通过快速I/O等手段改善程序性能。​       </p>
+<p>​                                                                                                                                   ——以上為剽来的線段樹题解</p>
+</blockquote>
+<blockquote>
+<p>——以下自己嗶嗶</p>
+<p><img src="/2019/03/20/交錯和查詢/b.png" alt="b"></p>
+</blockquote>
+<hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">5e5</span>,P=<span class="number">1e9</span>+<span class="number">7</span>,D=P+<span class="number">1</span>&gt;&gt;<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> C getchar()-48</span></span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ll s=<span class="number">0</span>,t=<span class="number">1</span>,k=C;</span><br><span class="line">  <span class="keyword">for</span> (;k&lt;<span class="number">0</span>||<span class="number">9</span>&lt;k;k=C) <span class="keyword">if</span> (k==<span class="number">-3</span>) t=<span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span> (;<span class="number">0</span>&lt;=k&amp;&amp;k&lt;=<span class="number">9</span>;k=C) s=(s&lt;&lt;<span class="number">1</span>)+(s&lt;&lt;<span class="number">3</span>)+k;</span><br><span class="line">  <span class="keyword">return</span> s*t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  ll a[<span class="number">2</span>][N],b[<span class="number">2</span>][N];</span><br><span class="line">  ll c[N];</span><br><span class="line">  ll n,m;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(ll *a,ll x,ll z)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (x&lt;=n)</span><br><span class="line">    (a[x]+=z)%=P,x+=x&amp;-x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">que</span><span class="params">(ll *a,ll x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ll s=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (x)</span><br><span class="line">    (s+=a[x])%=P,x-=x&amp;-x;</span><br><span class="line">  <span class="keyword">return</span> s%P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">in</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">  ll k=C,m=n;</span><br><span class="line">  n+=n;</span><br><span class="line">  <span class="keyword">for</span> (ll i=<span class="number">0</span>;++i&lt;=m;k=C)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (k&lt;<span class="number">0</span>||<span class="number">9</span>&lt;k) k=C;</span><br><span class="line">      c[i]=c[i+m]=k;</span><br><span class="line">      add(a[i&amp;<span class="number">1</span>],i+<span class="number">1</span>&gt;&gt;<span class="number">1</span>,k*i);</span><br><span class="line">      add(b[i&amp;<span class="number">1</span>],i+<span class="number">1</span>&gt;&gt;<span class="number">1</span>,k);</span><br><span class="line">      add(a[(i+m)&amp;<span class="number">1</span>],(i+m)+<span class="number">1</span>&gt;&gt;<span class="number">1</span>,k*(i+m));</span><br><span class="line">      add(b[(i+m)&amp;<span class="number">1</span>],(i+m)+<span class="number">1</span>&gt;&gt;<span class="number">1</span>,k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cha</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ll i=read(),k=read();</span><br><span class="line">  <span class="keyword">while</span> (i&lt;=n)</span><br><span class="line">    add(a[i&amp;<span class="number">1</span>],i+<span class="number">1</span>&gt;&gt;<span class="number">1</span>,(k-c[i])*i),</span><br><span class="line">    add(b[i&amp;<span class="number">1</span>],i+<span class="number">1</span>&gt;&gt;<span class="number">1</span>,k-c[i]),</span><br><span class="line">    c[i]=k,i+=n/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> QwQ(a,l,r) (que(a,r)-que(a,l))</span></span><br><span class="line"><span class="function">ll <span class="title">get</span><span class="params">(ll z,ll l,ll r,ll k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ll t=(l<span class="number">-1</span>)/n*n;</span><br><span class="line">  r=r-t+z&gt;&gt;<span class="number">1</span>;</span><br><span class="line">  l=l-t<span class="number">-1</span>+z&gt;&gt;<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> ((k+<span class="number">1</span>-t)%P*QwQ(b[z],l,r)-QwQ(a[z],l,r))%P;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function">ll <span class="title">que</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ll l=read(),r=read();</span><br><span class="line">  ll x=(l<span class="number">-1</span>)/n+<span class="number">1</span>,</span><br><span class="line">	   y=(r<span class="number">-1</span>)/n+<span class="number">1</span>,</span><br><span class="line">		 z=l&amp;<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (x==y)</span><br><span class="line">    <span class="keyword">return</span> (get(z,l,r,r)+P)%P;</span><br><span class="line">  ll A=get(z,l,x*n,r)+get(z,y*n-n+<span class="number">1</span>,r,r);</span><br><span class="line">  <span class="keyword">if</span> (++x&gt;=y) <span class="keyword">return</span> (A%P+P)%P;</span><br><span class="line">  (y-=x)%=P;</span><br><span class="line">    A+=y*get(z,<span class="number">1</span>,n,(r<span class="number">-1</span>)%n+<span class="number">1</span>+n),</span><br><span class="line">		A+=(y<span class="number">-1</span>)*n%P*y%P*D%P*que(b[z],n);</span><br><span class="line">  <span class="keyword">return</span> (A%P+P)%P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sol</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">  <span class="keyword">while</span> (m--)</span><br><span class="line">    <span class="keyword">if</span> (read()&amp;<span class="number">1</span>) cha();</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,que());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  freopen(<span class="string">"sum.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">  freopen(<span class="string">"sum.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">  in();</span><br><span class="line">  sol();</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#交錯和查詢"><span class="toc-text">交錯和查詢</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#前記"><span class="toc-text">前記</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据范围"><span class="toc-text">数据范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题解"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2019/03/17/恐狼后卫/" class="next">下一篇 恐狼后卫 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+  
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Z_Haku using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+  
+  <div class="theme-info">
+      <div class="powered-by"></div>
+      <span class="post-count">Zhauku一共写了10.9k个字呢</span>
+      
+  
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=28445796&auto=1&height=32"></iframe>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+    <p id="description">✧ 為你譜辰光熹微 ✧</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/Zhakusama">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="mailto:yowanehakusama@qq.com">
+        
+          M
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/timg.jpg');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload�Image":true,"transition":["flash"],"timer":true,"delay":300000,"shuffle":false,"count":12};
+var unsplashConfig = {"blur":true,"gravity":"center","greyscale":true};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"position":"left","width":10000,"height":250,"jsonPath":"/live2dw/assets/nepgear.model.json"},"mobile":{"show":true},"log":false});</script></body>
+</html>
+
+
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+
+
