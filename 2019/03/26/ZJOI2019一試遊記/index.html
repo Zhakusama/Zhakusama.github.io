@@ -17,24 +17,17 @@
   
   
   
-    <meta name="description" content="線段樹分治：
-  對操作時間分治
-  線段樹上插操作
-  dfs線段樹暴力修改？？？
-cdq分治：
-  對操作時間分治
-  對操作區間排序（不一定要）
-  記錄左對右影響(一般左掃右數據結構維護)
-點分治：
-  每次找重心
-  討論經過重心的情況
-  遞歸子樹
-莫隊：
-  暴力233
-  操作按修改詢問區間分塊排序
-  每次暴力移動更新答案">
+    <meta name="description" content="Day0上午坐車，快到時報錯：女士們列車們，先生即將到站（大霧）
+中飯大家點了很多菜，沒想到吃的差不多了
+見識了下面全是小蔥的牛肉和下面全是豆腐的魚頭。。。
+下午報道，游了歷史悠久的鎮海公園中學（霧）
+本來想逃掉頒獎，然而還是被迫給面子留了下來，看到了很多老同學
+晚飯又被推薦點KFC，真的無語，嗝。。。
+晚上賓館裡不知所措，洗了頭，補了番，很晚才睡，有定了很早得鬧鐘
+
+Day1很早被鬧鐘叫醒...">
   
-  <title>離線筆記 [ 愿 夜風柔吹 ]</title>
+  <title>ZJOI2019一試遊記 [ 愿 夜風柔吹 ]</title>
   
   
     <link rel="shortcut icon" href="/logo2.ico">
@@ -105,21 +98,21 @@ cdq分治：
 <div class="side-navigate hide-area">
   
     <div class="item prev">
-      <a href="/2019/02/18/陌上花開/">
+      <a href="/2019/04/03/LCIS/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        陌上花開
+        LCIS
       </div>
     </div>
   
   
     <div class="item next">
-      <a href="/2019/02/18/一些總結/">
+      <a href="/2019/03/22/牛客OI周赛8-提高组/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        一些總結
+        牛客OI周赛8-提高组
       </div>
     </div>
   
@@ -189,11 +182,11 @@ cdq分治：
   
 
   <article id="post">
-    <h1>離線筆記</h1>
+    <h1>ZJOI2019一試遊記</h1>
     <p class="page-title-sub">
-      <span id="post-title-date">撰写于 2019-02-18</span>
+      <span id="post-title-date">撰写于 2019-03-26</span>
       
-        <span id="post-title-updated">修改于 2019-03-01</span>
+        <span id="post-title-updated">修改于 2019-04-22</span>
       
       
       <span id="post-title-categories">分类
@@ -212,67 +205,103 @@ cdq分治：
       
         
         
-        <a href="/tags/點分治/">點分治</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/cdq分治/">cdq分治</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/線段樹二分/">線段樹二分</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/莫隊/">莫隊</a>
+        <a href="/tags/遊記/">遊記</a>
       
       </span>
       
     </p>
     
-    <p>線段樹分治：</p>
-<p>  對操作時間分治</p>
-<p>  線段樹上插操作</p>
-<p>  dfs線段樹暴力修改？？？</p>
-<p>cdq分治：</p>
-<p>  對操作時間分治</p>
-<p>  對操作區間排序（不一定要）</p>
-<p>  記錄左對右影響(一般左掃右數據結構維護)</p>
-<p>點分治：</p>
-<p>  每次找重心</p>
-<p>  討論經過重心的情況</p>
-<p>  遞歸子樹</p>
-<p>莫隊：</p>
-<p>  暴力233</p>
-<p>  操作按修改詢問區間分塊排序</p>
-<p>  每次暴力移動更新答案</p>
-
+    <h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>上午坐車，快到時報錯：女士們列車們，先生即將到站（大霧）</p>
+<p>中飯大家點了很多菜，沒想到吃的差不多了</p>
+<p>見識了下面全是小蔥的牛肉和下面全是豆腐的魚頭。。。</p>
+<p>下午報道，游了歷史悠久的鎮海公園中學（霧）</p>
+<p>本來想逃掉頒獎，然而還是<del>被迫</del>給面子留了下來，看到了很多老同學</p>
+<p>晚飯又被推薦點KFC，真的無語，嗝。。。</p>
+<p>晚上賓館裡不知所措，洗了頭，補了番，很晚才睡，有定了很早得鬧鐘</p>
+<hr>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>很早被鬧鐘叫醒，按了繼續睡（一般結局）</p>
+<p>fcy早就起來肝了</p>
+<p>酒店的早飯不錯，就是皮蛋粥怎麼沒什麼味道==！</p>
+<p>上午lyx將具體數學選講，而我們去晚了只能做過道小板凳</p>
+<p>lyx講課還算穩健，氣氛不錯，常常廣播討論群</p>
+<p>各路神仙疯狂被人肉，還教會了我們<del>人類的本質是復讀機</del></p>
+<p>可是我什麼都不會，越聽越不懂，然後第一節下課我們集體逃跑。。。</p>
+<p>中飯等hzk叫外賣，點的是到店吃。。。等了半年屁都沒發生</p>
+<p>還好ycy及時發現，而我根本沒看出來</p>
+<p>下午kcz講課，雜題選講qwq</p>
+<p>結果像sj說的在安徽時那樣，不知道在講什麼</p>
+<p>感覺在台上面無表親的自娛自樂（個人感覺）</p>
+<p>第一次下課後我們有集體跑掉了。。。（車費在燃燒）</p>
+<p>晚飯吃了點泡麵，燒水時那個水壺並不會自己跳掉，有點尷尬，有點害怕</p>
+<p>晚上試機，打了下通用格式板子沒什麼問題，可是lhm編譯器瘋狂毒瘤。。。</p>
+<p>試完機被騙去買奶茶，sj在奶蓋上打印了天依（艹我還明天也要來）</p>
+<p>回賓館洗澡，那個蓬頭好像並散不開。。。</p>
+<p>然後肚子餓點了粥和小吃，可買來才知道粥一碗有一小桶，不可思議我吃完了</p>
+<p>晚上又無所事事到很晚，不過早了點</p>
+<hr>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>起床日漸變遲qwq</p>
+<p>早飯和txc鄰座，受到大佬光環，rp++(並沒有)</p>
+<p>上午講數據結構，cyz講的</p>
+<p>開始還是分塊的，後來逐漸毒瘤，AAA樹，top樹等等等等。。。</p>
+<p>然而老劉並不讓我們跑，zyh還纏著問題</p>
+<p>中午吃了牛蛙面，一群人看詭異的蜘蛛俠無法自拔。。。</p>
+<p>然後去了奶茶店，在奶蓋上打了老婆</p>
+<p>因為太白了效果不佳qwq（名字裡都帶白呢），拍完照就被奧利奧末埋了qwq</p>
+<p>下午紹一某大佬（真忘了，尬）嗶嗶隨機算法</p>
+<p>瘋狂強調沒什麼東西，講不到時間（瘋狂暗示跑掉，然而我們最後還是跑了）</p>
+<p>晚上開了個小會，明天省選了可想而知</p>
+<p>晚飯外賣拖到9點多。。。</p>
+<p>晚上本來早睡的結果在床上還是拖了很久</p>
+<hr>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>省選日</p>
+<p>除了礦泉水什麼都沒準備</p>
+<p>沒有看出密碼有什麼含義（我覺得應該有）</p>
+<p>先看了看三道題</p>
+<p>首先T1麻將（突然想到“第一天 上午學麻將 下午大麻將”）</p>
+<p>看了一下像打牌，不過有點煩，先放</p>
+<p>然後看了T2感覺還可寫，又看了T3感覺T2好寫</p>
+<p>槓T2，剛開始代碼搭建混亂，決定重新審題</p>
+<p>發現題意理解錯了，還好沒有寫多少</p>
+<p>感覺還是可做，用線段樹模擬瞎搞</p>
+<p>寫到一半發現問題，懶標記出現2怎麼辦？題目沒說啊</p>
+<p>才發現題目寫的標記覆蓋不疊加</p>
+<p>想到不能直接下傳了，不好確定下面有多少原來就有標記的</p>
+<p>突然想到異或，想了一下還是有點亂，放棄了</p>
+<p>搞了半天寫了暴力，心態蹦了</p>
+<p>槓T3，先寫的暴力</p>
+<p>想一下判定性問題做DP應該可行，然而寫到轉移時發現好像不會。。。</p>
+<p>加了點剪枝希望能多過幾個點吧（然而估計並不）</p>
+<p>最後回到T1，仔細看了規則</p>
+<p>直接階乘會撲街，最小分段都沒有</p>
+<p>想到可以先提出選中的麻將，可又不會計算每個排列的貢獻（到後來也沒曉得）</p>
+<p>然後開始3題隨機亂想，搞到最後沒都沒搞出來</p>
+<p>完美送頭</p>
+<p>中飯險些又去KFC，最後吃的雞排飯（不同口味就醬不一樣==!）</p>
+<p>下午坐車超困，感覺命都沒了</p>
+<p>晚飯火車餐（真TM貴真Tm難吃。。。）</p>
+<p>還有第一次知道了火車座位可以換方向，嗝。。。</p>
+<hr>
+<h4 id="一試終"><a href="#一試終" class="headerlink" title="一試終"></a>一試終</h4>
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Day0"><span class="toc-text">Day0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Day1"><span class="toc-text">Day1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Day2"><span class="toc-text">Day2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Day3"><span class="toc-text">Day3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一試終"><span class="toc-text">一試終</span></a></li></ol></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2019/02/18/陌上花開/" class="prev">&larr; 上一篇 陌上花開</a>
+    <a href="/2019/04/03/LCIS/" class="prev">&larr; 上一篇 LCIS</a>
   
 
   
 
   
-    <a href="/2019/02/18/一些總結/" class="next">下一篇 一些總結 &rarr;</a>
+    <a href="/2019/03/22/牛客OI周赛8-提高组/" class="next">下一篇 牛客OI周赛8-提高组 &rarr;</a>
   
 </nav>
 

@@ -17,24 +17,31 @@
   
   
   
-    <meta name="description" content="線段樹分治：
-  對操作時間分治
-  線段樹上插操作
-  dfs線段樹暴力修改？？？
-cdq分治：
-  對操作時間分治
-  對操作區間排序（不一定要）
-  記錄左對右影響(一般左掃右數據結構維護)
-點分治：
-  每次找重心
-  討論經過重心的情況
-  遞歸子樹
-莫隊：
-  暴力233
-  操作按修改詢問區間分塊排序
-  每次暴力移動更新答案">
+    <meta name="description" content="簡簡簡介
+
+用來將在轉移試遵循一次函數的dp快速找到最優決策點加速轉移
+
+
+使用條件
+
+首先要是dp（霧
+然後轉移形式 fi =min/max fj + ai * bj (隨便嗶的
+最好a[],b[]都有單調性
+
+
+學習建議
+
+算法進階上講的我非常自閉，建議忽視
+
+
+規定！！！
+
+以 fi =min fj + ai * bj  ( j &lt; i ) 為例，且默認a[],b[]單調增
+
+
+...">
   
-  <title>離線筆記 [ 愿 夜風柔吹 ]</title>
+  <title>斜率優化筆記 [ 愿 夜風柔吹 ]</title>
   
   
     <link rel="shortcut icon" href="/logo2.ico">
@@ -105,21 +112,21 @@ cdq分治：
 <div class="side-navigate hide-area">
   
     <div class="item prev">
-      <a href="/2019/02/18/陌上花開/">
+      <a href="/2019/04/21/FOI2019遊記/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        陌上花開
+        FOI2019遊記
       </div>
     </div>
   
   
     <div class="item next">
-      <a href="/2019/02/18/一些總結/">
+      <a href="/2019/04/03/LCIS/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        一些總結
+        LCIS
       </div>
     </div>
   
@@ -189,11 +196,11 @@ cdq分治：
   
 
   <article id="post">
-    <h1>離線筆記</h1>
+    <h1>斜率優化筆記</h1>
     <p class="page-title-sub">
-      <span id="post-title-date">撰写于 2019-02-18</span>
+      <span id="post-title-date">撰写于 2019-04-21</span>
       
-        <span id="post-title-updated">修改于 2019-03-01</span>
+        <span id="post-title-updated">修改于 2019-04-22</span>
       
       
       <span id="post-title-categories">分类
@@ -212,46 +219,76 @@ cdq分治：
       
         
         
-        <a href="/tags/點分治/">點分治</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/cdq分治/">cdq分治</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/線段樹二分/">線段樹二分</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/莫隊/">莫隊</a>
+        <a href="/tags/斜率優化/">斜率優化</a>
       
       </span>
       
     </p>
     
-    <p>線段樹分治：</p>
-<p>  對操作時間分治</p>
-<p>  線段樹上插操作</p>
-<p>  dfs線段樹暴力修改？？？</p>
-<p>cdq分治：</p>
-<p>  對操作時間分治</p>
-<p>  對操作區間排序（不一定要）</p>
-<p>  記錄左對右影響(一般左掃右數據結構維護)</p>
-<p>點分治：</p>
-<p>  每次找重心</p>
-<p>  討論經過重心的情況</p>
-<p>  遞歸子樹</p>
-<p>莫隊：</p>
-<p>  暴力233</p>
-<p>  操作按修改詢問區間分塊排序</p>
-<p>  每次暴力移動更新答案</p>
+    <h3 id="簡簡簡介"><a href="#簡簡簡介" class="headerlink" title="簡簡簡介"></a>簡簡簡介</h3><blockquote>
+<ul>
+<li>用來將在轉移試遵循一次函數的dp快速找到最優決策點加速轉移</li>
+</ul>
+</blockquote>
+<h3 id="使用條件"><a href="#使用條件" class="headerlink" title="使用條件"></a>使用條件</h3><blockquote>
+<ul>
+<li>首先要是dp（霧</li>
+<li>然後轉移形式 fi =min/max fj + ai * bj (隨便嗶的</li>
+<li>最好a[],b[]都有單調性</li>
+</ul>
+</blockquote>
+<h3 id="學習建議"><a href="#學習建議" class="headerlink" title="學習建議"></a>學習建議</h3><blockquote>
+<ul>
+<li>算法進階上講的我非常自閉，建議忽視</li>
+</ul>
+</blockquote>
+<h4 id="規定！！！"><a href="#規定！！！" class="headerlink" title="規定！！！"></a>規定！！！</h4><blockquote>
+<ul>
+<li>以 fi =min fj + ai * bj  ( j &lt; i ) 為例，且默認a[],b[]單調增</li>
+</ul>
+</blockquote>
+<h3 id="假變形過程"><a href="#假變形過程" class="headerlink" title="假變形過程"></a>假變形過程</h3><blockquote>
+<ul>
+<li>知道名稱，自己YY斜率優化的送命路</li>
+<li>因為 fj 在之前dp時確定，bj 為給定常數</li>
+<li>所以 fi 的轉移可以看做由 ai 確定的一次函數 即 x=ai 時 所有轉移斜線的 </li>
+<li>那麼我們維護斜線最低點就好了，而且因變量更新前後有單調性，好！</li>
+<li>那麼怎麼維護呢。。。並不知道會在哪裡更新</li>
+<li>好的GG了</li>
+</ul>
+</blockquote>
+<h3 id="前排提醒"><a href="#前排提醒" class="headerlink" title="前排提醒"></a>前排提醒</h3><blockquote>
+<ul>
+<li>帶著一下幾句話食用！</li>
+<li>希望以不等式角度為主，而不是幾何</li>
+<li>羅列每一步的轉移式 </li>
+<li>可以建立決策點坐標系，決策點決策範圍數軸</li>
+<li>決策集邊界注意一下</li>
+<li>不等式同乘負數時符號注意</li>
+<li>式子可能很长，最好確立一下最簡一般形式（本蒟蒻宏定義</li>
+</ul>
+</blockquote>
+<h3 id="真變形過程"><a href="#真變形過程" class="headerlink" title="真變形過程"></a>真變形過程</h3><blockquote>
+<ul>
+<li>詢問大佬後</li>
+<li>因為 fj 在之前dp時確定，bj 為給定常數</li>
+<li>然後我們就考慮兩個決策的優劣</li>
+<li>若 fj + x <em> bj 優于 fk + x </em> bk      ( k &lt; j )</li>
+<li>則 fj + x <em> bj &lt; fk + x </em> bk</li>
+<li>整理得 ( fj - fk ) / ( bj - bk )  &lt; -x</li>
+<li>那是不是 點 ( fj , bj ) 與 點 ( fk , bk ) 的斜率  &lt; -x 了 （可以畫決策點坐標系 f-b，決策點轉化為凸包，凸包也就是斜率單調</li>
+<li>也就是 x &gt; - ( fj - fk ) / ( bj - bk ) 時，決策點 j 比 k 優 （可以畫決策點決策範圍數軸 ，直觀理解每個決策點，不難發現完美對應單調隊列，個人認為好理解</li>
+<li>維護決策點就用單調隊列嘛</li>
+<li>當前決策點就是隊頭（本例</li>
+</ul>
+</blockquote>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><blockquote>
+<ul>
+<li>當a[]不單調時，當前決策點需在單調隊列決策集裡二分</li>
+<li>當b[]不單調時，需要動態維護凸包</li>
+<li>當f[]很大時，需要寫高精度，甚至接FFT（自己瞎嗶</li>
+</ul>
+</blockquote>
 
   </article>
   <div class="random-toc-area">
@@ -259,20 +296,20 @@ cdq分治：
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#簡簡簡介"><span class="toc-text">簡簡簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用條件"><span class="toc-text">使用條件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#學習建議"><span class="toc-text">學習建議</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#規定！！！"><span class="toc-text">規定！！！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#假變形過程"><span class="toc-text">假變形過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前排提醒"><span class="toc-text">前排提醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#真變形過程"><span class="toc-text">真變形過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拓展"><span class="toc-text">拓展</span></a></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2019/02/18/陌上花開/" class="prev">&larr; 上一篇 陌上花開</a>
+    <a href="/2019/04/21/FOI2019遊記/" class="prev">&larr; 上一篇 FOI2019遊記</a>
   
 
   
 
   
-    <a href="/2019/02/18/一些總結/" class="next">下一篇 一些總結 &rarr;</a>
+    <a href="/2019/04/03/LCIS/" class="next">下一篇 LCIS &rarr;</a>
   
 </nav>
 

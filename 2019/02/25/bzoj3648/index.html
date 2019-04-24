@@ -17,8 +17,7 @@
   
   
   
-    <meta name="description" content="寢室管理
-Time limit : 1sec / Memory limit : 512MBDescriptionT64有一个好朋友，叫T128。T128是寄宿生，并且最近被老师叫过去当宿管了。宿管可不是一件很好做的工作，碰巧T128有一个工作上的问题想请T64帮忙解决。T128的寝室条件不是很好，所以没有很多钱来装修。礼间寝室仅由n-1条双向道路连接，而且任意两间寝室之间都可以互达。最近，T...">
+    <meta name="description" content="Time limit : 1sec / Memory limit : 512MBDescriptionT64有一个好朋友，叫T128。T128是寄宿生，并且最近被老师叫过去当宿管了。宿管可不是一件很好做的工作，碰巧T128有一个工作上的问题想请T64帮忙解决。T128的寝室条件不是很好，所以没有很多钱来装修。礼间寝室仅由n-1条双向道路连接，而且任意两间寝室之间都可以互达。最近，T128被要...">
   
   <title>bzoj3648 [ 愿 夜風柔吹 ]</title>
   
@@ -179,7 +178,7 @@ Time limit : 1sec / Memory limit : 512MBDescriptionT64有一个好朋友，叫T1
     <p class="page-title-sub">
       <span id="post-title-date">撰写于 2019-02-25</span>
       
-        <span id="post-title-updated">修改于 2019-02-25</span>
+        <span id="post-title-updated">修改于 2019-04-03</span>
       
       
       <span id="post-title-categories">分类
@@ -216,8 +215,7 @@ Time limit : 1sec / Memory limit : 512MBDescriptionT64有一个好朋友，叫T1
       
     </p>
     
-    <h1 id="寢室管理"><a href="#寢室管理" class="headerlink" title="寢室管理"></a>寢室管理</h1><hr>
-<h5 id="Time-limit-1sec-Memory-limit-512MB"><a href="#Time-limit-1sec-Memory-limit-512MB" class="headerlink" title="Time limit : 1sec / Memory limit : 512MB"></a>Time limit : 1sec / Memory limit : 512MB</h5><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>T64有一个好朋友，叫T128。T128是寄宿生，并且最近被老师叫过去当宿管了。宿管可不是一件很好做的工作，碰巧T128有一个工作上的问题想请T64帮忙解决。T128的寝室条件不是很好，所以没有很多钱来装修。礼间寝室仅由n-1条双向道路连接，而且任意两间寝室之间都可以互达。最近，T128被要求对一条路径上的所有寝室进行管理，这条路径不会重复经过某个点或某条边。但他不记得是哪条路径了。他只记得这条路径上有不少于k个寝室。于是，他想请T64帮忙数一下，有多少条这样的路径满足条件。嗯…还有一个问题。由于最近有一些熊孩子不准晚上讲话很不爽，他们决定修筑一条“情报通道”，如果通道建成，寝室就变成了一个N个点N条边的无向图。并且，经过“情报通道”的路径也是合法的。T128心想：通道建成之前，T64还有一个高效的算法帮我数路径条数，但是通道建成之后，他还有办法吗？对，T64手忙脚乱，根本数不清有多少条路径。于是他找到了你。</p>
+    <h5 id="Time-limit-1sec-Memory-limit-512MB"><a href="#Time-limit-1sec-Memory-limit-512MB" class="headerlink" title="Time limit : 1sec / Memory limit : 512MB"></a>Time limit : 1sec / Memory limit : 512MB</h5><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>T64有一个好朋友，叫T128。T128是寄宿生，并且最近被老师叫过去当宿管了。宿管可不是一件很好做的工作，碰巧T128有一个工作上的问题想请T64帮忙解决。T128的寝室条件不是很好，所以没有很多钱来装修。礼间寝室仅由n-1条双向道路连接，而且任意两间寝室之间都可以互达。最近，T128被要求对一条路径上的所有寝室进行管理，这条路径不会重复经过某个点或某条边。但他不记得是哪条路径了。他只记得这条路径上有不少于k个寝室。于是，他想请T64帮忙数一下，有多少条这样的路径满足条件。嗯…还有一个问题。由于最近有一些熊孩子不准晚上讲话很不爽，他们决定修筑一条“情报通道”，如果通道建成，寝室就变成了一个N个点N条边的无向图。并且，经过“情报通道”的路径也是合法的。T128心想：通道建成之前，T64还有一个高效的算法帮我数路径条数，但是通道建成之后，他还有办法吗？对，T64手忙脚乱，根本数不清有多少条路径。于是他找到了你。</p>
 <h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>第一行为三个正整数N，M，K（2 ≤ K ≤ N），代表有n间寝室，m条边连接它们n-1 ≤ m ≤ N；m= n-1意味着“情报遁道”未被修好；m=n意味着“情报通道”已被修好），以及题目描述中的K。</p>
 <p>接下来m行，每行两个正整数z，y，代表第x间寝室与第y间寝室之间有一条双向边。</p>
 <h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>仅包含一个整数，代表经过至少K间寝室的路径条数。</p>
@@ -251,8 +249,8 @@ Time limit : 1sec / Memory limit : 512MBDescriptionT64有一个好朋友，叫T1
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#寢室管理"><span class="toc-text">寢室管理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Time-limit-1sec-Memory-limit-512MB"><span class="toc-text">Time limit : 1sec / Memory limit : 512MB</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Output"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代碼"><span class="toc-text">代碼</span></a></li>
-  </div>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Time-limit-1sec-Memory-limit-512MB"><span class="toc-text">Time limit : 1sec / Memory limit : 512MB</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Output"><span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代碼"><span class="toc-text">代碼</span></a>
+  </li></div>
 </div>
 
   
@@ -290,7 +288,7 @@ Time limit : 1sec / Memory limit : 512MBDescriptionT64有一个好朋友，叫T1
   
   <div class="theme-info">
       <div class="powered-by"></div>
-      <span class="post-count">Zhauku一共写了12.5k个字呢</span>
+      <span class="post-count">Zhauku一共写了14k个字呢</span>
       
   
 </div>

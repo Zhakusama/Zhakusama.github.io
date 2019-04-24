@@ -17,24 +17,18 @@
   
   
   
-    <meta name="description" content="線段樹分治：
-  對操作時間分治
-  線段樹上插操作
-  dfs線段樹暴力修改？？？
-cdq分治：
-  對操作時間分治
-  對操作區間排序（不一定要）
-  記錄左對右影響(一般左掃右數據結構維護)
-點分治：
-  每次找重心
-  討論經過重心的情況
-  遞歸子樹
-莫隊：
-  暴力233
-  操作按修改詢問區間分塊排序
-  每次暴力移動更新答案">
+    <meta name="description" content="筆記本壞了，真的沒話說了，現在才自我修復
+
+Day0再次去福州，不過沒去屏山，去了上藤
+午飯因為太懶了沒吃（霧
+下午報道，又見到了fzsz的各位巨佬們
+然後試機，發現被騙了根本不用Linux，電腦配置跟hl小機房簡直一樣
+去了明天吃午飯的地方吃完飯，哇超級吃不慣，浪費超多超尷尬
+回賓館迷路，繞來繞去繞了半天才回去（我是傻逼不要照我
+住的漢庭外面有奇怪售貨機，點個外賣瘋狂被問到底是哪裡的漢庭
+...">
   
-  <title>離線筆記 [ 愿 夜風柔吹 ]</title>
+  <title>FOI2019遊記 [ 愿 夜風柔吹 ]</title>
   
   
     <link rel="shortcut icon" href="/logo2.ico">
@@ -104,22 +98,13 @@ cdq分治：
 
 <div class="side-navigate hide-area">
   
-    <div class="item prev">
-      <a href="/2019/02/18/陌上花開/">
-        <div class="item-icon"></div>
-      </a>
-      <div class="item-title">
-        陌上花開
-      </div>
-    </div>
-  
   
     <div class="item next">
-      <a href="/2019/02/18/一些總結/">
+      <a href="/2019/04/21/斜率優化筆記/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        一些總結
+        斜率優化筆記
       </div>
     </div>
   
@@ -189,11 +174,11 @@ cdq分治：
   
 
   <article id="post">
-    <h1>離線筆記</h1>
+    <h1>FOI2019遊記</h1>
     <p class="page-title-sub">
-      <span id="post-title-date">撰写于 2019-02-18</span>
+      <span id="post-title-date">撰写于 2019-04-21</span>
       
-        <span id="post-title-updated">修改于 2019-03-01</span>
+        <span id="post-title-updated">修改于 2019-04-22</span>
       
       
       <span id="post-title-categories">分类
@@ -212,67 +197,72 @@ cdq分治：
       
         
         
-        <a href="/tags/點分治/">點分治</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/cdq分治/">cdq分治</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/線段樹二分/">線段樹二分</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/莫隊/">莫隊</a>
+        <a href="/tags/遊記/">遊記</a>
       
       </span>
       
     </p>
     
-    <p>線段樹分治：</p>
-<p>  對操作時間分治</p>
-<p>  線段樹上插操作</p>
-<p>  dfs線段樹暴力修改？？？</p>
-<p>cdq分治：</p>
-<p>  對操作時間分治</p>
-<p>  對操作區間排序（不一定要）</p>
-<p>  記錄左對右影響(一般左掃右數據結構維護)</p>
-<p>點分治：</p>
-<p>  每次找重心</p>
-<p>  討論經過重心的情況</p>
-<p>  遞歸子樹</p>
-<p>莫隊：</p>
-<p>  暴力233</p>
-<p>  操作按修改詢問區間分塊排序</p>
-<p>  每次暴力移動更新答案</p>
-
+    <ul>
+<li>筆記本壞了，真的沒話說了，現在才自我修復</li>
+</ul>
+<h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>再次去福州，不過沒去屏山，去了上藤</p>
+<p>午飯因為太懶了沒吃（霧</p>
+<p>下午報道，又見到了fzsz的各位巨佬們</p>
+<p>然後試機，發現被騙了根本不用Linux，電腦配置跟hl小機房簡直一樣</p>
+<p>去了明天吃午飯的地方吃完飯，哇超級吃不慣，浪費超多超尷尬</p>
+<p>回賓館迷路，繞來繞去繞了半天才回去（<del>我是傻逼不要照我</del></p>
+<p>住的漢庭<del>外面有奇怪售貨機</del>，點個外賣瘋狂被問到底是哪裡的漢庭</p>
+<p>酒店設施超簡陋，床頭插座有焦痕，衛生間甚至沒有棉簽（可惡啊</p>
+<p>晚上點的金拱门（個人認為比KFC好吃</p>
+<p>提早20分鐘送到打我電話，我還接了，然後到點了我才意識到早就送到了（嗚嗚嗚</p>
+<p>又無所事事到很晚</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>酒店早飯不可吃，路上有金拱門(X2</p>
+<p>進考場金屬感應器好像把房卡消磁了。。。</p>
+<p>上午考試8點到12點</p>
+<p>首先T1數據沒分段範圍，描述鬼畜，就是比你想到的算法精度夠不夠。。。</p>
+<p>寫了暴力死了。。。後來ycy說可以對數優化不是很懂，嗝。。。</p>
+<p>T2看到了第一眼毫無感覺，決定寫暴力</p>
+<p>發現有兩種可以寫，然後又發現本題一種暴力T的不是很嚴重，可以大力優化，而且跑不滿，然後就過了。。。</p>
+<p>T3推了發現不會數據結構維護，寫了暴力</p>
+<p>中飯又到了那個飯店（害怕，不過sj換了菜，吃的還算舒服，嗝</p>
+<p>下午回賓館頹廢，後來成績出來了120分，T3掛了十分，還可以</p>
+<p>晚飯外賣送錯酒店。。。</p>
+<p>發現一個沙雕遊戲主播老番茄</p>
+<p>晚上日常不知所措</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>酒店早飯不可吃，路上有金拱門(X3</p>
+<p>上午T1藍書原題。。。還不是最大數據範圍</p>
+<p>雖然沒寫過，也不會斜率優化，但現場YY費用前計暴力就過了（式子和藍書不同</p>
+<p>T2一分析發現題目假裝動態</p>
+<p>先寫一邊裸的逆序對，然後原數組掃一遍維護當前答案就行了</p>
+<p>T3推了發現不會優化，還是寫了暴力</p>
+<p>後來知道是容斥，但具體還是不會</p>
+<p>中午吃飯時zzq，waz等大佬坐在台上，場面超級搞笑</p>
+<p>回去路上下大雨，一群人沒帶傘的</p>
+<p>下午準備回ZJ，本來上火車前想去玩的，後來頹在車站裡了。。。</p>
+<p>買到了東方樹葉茉莉花茶，嘻嘻</p>
+<p>火車上一直以為沒有插座，後來才知道在座位中間，尬死</p>
+<p>回HL後倒頭就睡</p>
+<hr>
+<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3>
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Day0"><span class="toc-text">Day0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Day1"><span class="toc-text">Day1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Day2"><span class="toc-text">Day2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#END"><span class="toc-text">END</span></a></li></ol></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2019/02/18/陌上花開/" class="prev">&larr; 上一篇 陌上花開</a>
-  
 
   
 
   
-    <a href="/2019/02/18/一些總結/" class="next">下一篇 一些總結 &rarr;</a>
+    <a href="/2019/04/21/斜率優化筆記/" class="next">下一篇 斜率優化筆記 &rarr;</a>
   
 </nav>
 

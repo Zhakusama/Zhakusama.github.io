@@ -17,9 +17,7 @@
   
   
   
-    <meta name="description" content="樹上求和
-
-題目大意  求所有滿足i集結點不少于ai個的子樹棵數（滿足不同詢問的同一棵樹可多次計算）
+    <meta name="description" content="題目大意  求所有滿足i集結點不少于ai個的子樹棵數（滿足不同詢問的同一棵樹可多次計算）
 
 題解這一題有一個特點：詢問總點數為n
 並且每次詢問獨立
@@ -28,7 +26,7 @@
 其次i級節點不足ai個顯然都不可取，特殊考慮
 那麼其他情況在每條鏈上滿足上部可取，下部不可取
 簡而言之就是答案構成一棵樹
-而這棵樹的葉子必定包含在dfs裡i級點相鄰的a...">
+而這棵樹的葉子必定包含在dfs裡i級點相鄰的ai個的lca...">
   
   <title>樹上求和 [ 愿 夜風柔吹 ]</title>
   
@@ -189,7 +187,7 @@
     <p class="page-title-sub">
       <span id="post-title-date">撰写于 2019-03-10</span>
       
-        <span id="post-title-updated">修改于 2019-03-11</span>
+        <span id="post-title-updated">修改于 2019-04-03</span>
       
       
       <span id="post-title-categories">分类
@@ -220,7 +218,7 @@
       
     </p>
     
-    <h1 id="樹上求和"><a href="#樹上求和" class="headerlink" title="樹上求和"></a>樹上求和</h1><p><img src="/2019/03/10/樹上求和/a.png" alt="a"></p>
+    <p><img src="/2019/03/10/樹上求和/a.png" alt="a"></p>
 <hr>
 <h2 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h2><p>  求所有滿足i集結點不少于ai個的子樹棵數（滿足不同詢問的同一棵樹可多次計算）</p>
 <hr>
@@ -249,7 +247,7 @@
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#樹上求和"><span class="toc-text">樹上求和</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代碼"><span class="toc-text">代碼</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代碼"><span class="toc-text">代碼</span></a></li></ol>
   </div>
 </div>
 
@@ -288,7 +286,7 @@
   
   <div class="theme-info">
       <div class="powered-by"></div>
-      <span class="post-count">Zhauku一共写了12.5k个字呢</span>
+      <span class="post-count">Zhauku一共写了14k个字呢</span>
       
   
 </div>
