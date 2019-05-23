@@ -1,0 +1,475 @@
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Z_Haku">
+  
+  
+  
+  
+    <meta name="description" content="声明
+请先写完任务安排123（算法进阶指南上的
+
+做法可能不常见，但好用
+
+给出的代码为最终成型第一次AC代码，可能乱且丑
+
+
+题目描述
+机器上有N个需要处理的任务，它们构成了一个序列。这些任务被标号为1到N，因此序列的排列为1,2,3…N。这N个任务被分成若干批，每批包含相邻的若干任务。从时刻0开始，这些任务被分批加工，第i个任务单独完成所需的时间是Ti。在每批任务开始前，机器需要启动时间...">
+  
+  <title>任务安排4 [ 愿 夜風柔吹 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/logo2.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"> 
+  <style>
+    .pace .pace-progress {
+    	background: #FF00FF; /*进度条颜色*/
+		height: 3px;
+	}
+	.pace .pace-progress-inner {
+    	box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/ 
+	}
+	.pace .pace-activity {
+	     border-top-color: #1E92FB;    /*上边框颜色*/
+		 border-left-color: #1E92FB;    /*左边框颜色*/
+	}
+  </style>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<body>
+
+ <!--动态线条背景-->
+ <script type="text/javascript" color="196,0,196" opacity="0.3" zindex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+ </script>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+ 
+
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2019/04/21/FOI2019遊記/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        FOI2019遊記
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+          <div id="homelink">愿 夜風柔吹</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>任务安排4</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2019-05-22</span>
+      
+        <span id="post-title-updated">修改于 2019-05-23</span>
+      
+      
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/關於OI/">關於OI</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/cdq分治/">cdq分治</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/斜率優化/">斜率優化</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><ul>
+<li><p>请先写完任务安排123（算法进阶指南上的</p>
+</li>
+<li><p>做法可能不常见，但好用</p>
+</li>
+<li><p>给出的代码为最终成型第一次AC代码，可能乱且丑</p>
+</li>
+</ul>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
+<p>机器上有N个需要处理的任务，它们构成了一个序列。这些任务被标号为1到N，因此序列的排列为1,2,3…N。这N个任务被分成若干批，每批包含相邻的若干任务。从时刻0开始，这些任务被分批加工，第i个任务单独完成所需的时间是Ti。在每批任务开始前，机器需要启动时间S，而完成这批任务所需的时间是各个任务需要时间的总和。注意，同一批任务将在同一时刻完成。每个任务的费用是它的完成时刻乘以一个费用系数Fi。请确定一个分组方案，使得总费用最小。</p>
+</blockquote>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><blockquote>
+<p>第一行两个整数，N,S。</p>
+<p>接下来N行每行两个整数，Ti,Ci。</p>
+</blockquote>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><blockquote>
+<p>一个整数，为所求的答案。</p>
+</blockquote>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><blockquote>
+<p>5 1<br>1 3<br>3 2<br>4 3<br>2 3<br>1 4</p>
+</blockquote>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><blockquote>
+<p>153</p>
+</blockquote>
+<h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><blockquote>
+<p>1&lt;=N&lt;=10^5</p>
+<p>0&lt;=S&lt;=512</p>
+<p>0&lt;=abs(Ti),abs(Ci)&lt;=100</p>
+</blockquote>
+<hr>
+<h3 id="市面上的题解"><a href="#市面上的题解" class="headerlink" title="市面上的题解"></a>市面上的题解</h3><blockquote>
+<p>动态维护凸包，写起来调起来比较恶心（本人已放弃</p>
+</blockquote>
+<hr>
+<h3 id="大佬提供的解"><a href="#大佬提供的解" class="headerlink" title="大佬提供的解"></a>大佬提供的解</h3><blockquote>
+<p>首先Ci有單調性的我們在任务安排3就已经解决了</p>
+<p>如果能把Ci变为有序那么我们就可以像任务安排3那样做了</p>
+<p>而更新是前面的更新后面的，也就是说考虑相对顺序就行</p>
+<p>那么我们就可以cdq分治来做此题了</p>
+<p>具體就是分治時對Ci排序，分治順序為分左，左更新右，分右</p>
+<p>每层更新时就跟任务安排三一模一样</p>
+</blockquote>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><blockquote>
+<p>上面做法是兩個log的，一個log来源于Ti的无序，一个来源于cdq</p>
+<p>既然Ci可以排序，那Ti当然也可以了</p>
+<p>Ti，Ci都有序就可以像任务安排1那样做了，优化掉一个log</p>
+<p>有点不同的是Ti是先排好再分下去</p>
+<p>我们还可以注意到斜率优化的特点</p>
+<p>优化决策点的选择，及时排除不必要点</p>
+<p>显然一个点被排出决策集后在当前分治层之上的时候都会被排除</p>
+<p>我们就记录每层维护好后的决策集</p>
+<p>这里的点也就是上传后可能成为决策点的那些点了</p>
+<p>加了这两个优化后就跑的飞快了</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">1e5</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">Getchar</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">char</span> buf[<span class="number">100000</span>],*p1=buf,*p2=buf;</span><br><span class="line">  <span class="keyword">return</span> p1==p2&amp;&amp;(p2=(p1=buf)+fread(buf,<span class="number">1</span>,<span class="number">100000</span>,<span class="built_in">stdin</span>),p1==p2)?EOF:*p1++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ll x = <span class="number">0</span> , w = <span class="number">0</span>; <span class="keyword">char</span> ch = <span class="string">' '</span>;</span><br><span class="line">  <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(ch)) w |= ch==<span class="string">'-'</span> , ch = Getchar();</span><br><span class="line">  <span class="keyword">while</span> (<span class="built_in">isdigit</span>(ch)) x = x*<span class="number">10</span> + ch<span class="number">-48</span> , ch = Getchar();</span><br><span class="line">  <span class="keyword">return</span> w ? -x : x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  ll n,s;</span><br><span class="line">  ll a[N],b[N];</span><br><span class="line"><span class="function">ll <span class="title">cmpp</span><span class="params">(ll x,ll y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a[x]&lt;a[y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">cmpg</span><span class="params">(ll x,ll y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b[x]&lt;b[y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  ll f[N],z[N],q[N],g[N],p[N];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GA(i) (-b[i])</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GB(i) (f[i]+a[i]*(b[i]-b[n])-s*b[i])</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GF(i,j) f[j]+(a[i]-a[j]+s)*(b[n]-b[j])</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CA(i,j) (GA(i)-GA(j))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CB(i,j) (GB(i)-GB(j))</span></span><br><span class="line"><span class="function">ll <span class="title">cdq</span><span class="params">(ll l,ll r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (l==r) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  ll m=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">  ll i=l,j=m+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (ll t=l;t&lt;=r;++t)</span><br><span class="line">    <span class="keyword">if</span> (p[t]&lt;=m) z[i++]=p[t];</span><br><span class="line">		<span class="keyword">else</span> z[j++]=p[t];</span><br><span class="line">  <span class="keyword">for</span> (ll t=l;t&lt;=r;++t) p[t]=z[t];</span><br><span class="line">  ll lt=cdq(l,m);</span><br><span class="line">  ll B=<span class="number">1</span>,E=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (ll i=l;i&lt;l+lt;++i)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (<span class="number">1</span>&lt;E&amp;&amp;CB(q[E],q[E<span class="number">-1</span>])*CA(q[E],g[i])&gt;=CB(g[i],q[E])*CA(q[E<span class="number">-1</span>],q[E])) --E;</span><br><span class="line">      q[++E]=g[i];</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">for</span> (ll i=m;++i&lt;=r;)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (B&lt;E&amp;&amp;GF(p[i],q[B])&gt;=GF(p[i],q[B+<span class="number">1</span>])) ++B;</span><br><span class="line">      f[p[i]]=min(f[p[i]],GF(p[i],q[B]));</span><br><span class="line">    &#125;</span><br><span class="line">  ll rt=cdq(m+<span class="number">1</span>,r);</span><br><span class="line">  E=<span class="number">0</span>;</span><br><span class="line">  <span class="comment">//當時這裡卡了，分治後循序會變，要重新做</span></span><br><span class="line">  <span class="keyword">for</span> (ll i=l;i&lt;l+lt;++i)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (<span class="number">1</span>&lt;E&amp;&amp;CB(q[E],q[E<span class="number">-1</span>])*CA(q[E],g[i])&gt;=CB(g[i],q[E])*CA(q[E<span class="number">-1</span>],q[E])) --E;</span><br><span class="line">      q[++E]=g[i];</span><br><span class="line">    &#125;</span><br><span class="line">  merge(q+<span class="number">1</span>,q+E+<span class="number">1</span>,g+m+<span class="number">1</span>,g+m+rt+<span class="number">1</span>,z+l,cmpg);</span><br><span class="line">  ll L=E+rt;</span><br><span class="line">	<span class="keyword">for</span> (ll i=l;i&lt;l+L;++i) </span><br><span class="line">	g[i]=z[i];</span><br><span class="line">  <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;s;</span><br><span class="line">  <span class="keyword">for</span> (ll i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    a[i]=a[i<span class="number">-1</span>]+read(),</span><br><span class="line">    b[i]=b[i<span class="number">-1</span>]+read(),</span><br><span class="line">		p[i]=g[i]=i;</span><br><span class="line">	sort(p,p+n+<span class="number">1</span>,cmpp); </span><br><span class="line">  <span class="built_in">memset</span>(f,<span class="number">10</span>,<span class="keyword">sizeof</span> f);</span><br><span class="line">  f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">  cdq(<span class="number">0</span>,n);</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;f[n];</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#声明"><span class="toc-text">声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入格式"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出格式"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输入"><span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样例输出"><span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据范围"><span class="toc-text">数据范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#市面上的题解"><span class="toc-text">市面上的题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大佬提供的解"><span class="toc-text">大佬提供的解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化"><span class="toc-text">优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2019/04/21/FOI2019遊記/" class="next">下一篇 FOI2019遊記 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+  
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Z_Haku using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+  
+  <div class="theme-info">
+      <div class="powered-by"></div>
+      <span class="post-count">Zhauku一共写了15.6k个字呢</span>
+      
+  
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=28445796&auto=1&height=32"></iframe>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+    <p id="description">✧ 為你譜辰光熹微 ✧</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/Zhakusama">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="mailto:yowanehakusama@qq.com">
+        
+          M
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/timg.jpg');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload�Image":true,"transition":["flash"],"timer":true,"delay":300000,"shuffle":false,"count":12};
+var unsplashConfig = {"blur":true,"gravity":"center","greyscale":true};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"position":"left","width":10000,"height":250,"jsonPath":"/live2dw/assets/nepgear.model.json"},"mobile":{"show":true},"log":false});</script></body>
+</html>
+
+
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+
+

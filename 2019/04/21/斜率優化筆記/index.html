@@ -17,7 +17,8 @@
   
   
   
-    <meta name="description" content="簡簡簡介
+    <meta name="description" content="警告！！！本篇讲的比较抽象，还可能有假，以学习历程和概念为主，建议删除
+簡簡簡介
 
 用來將在轉移試遵循一次函數的dp快速找到最優決策點加速轉移
 
@@ -36,10 +37,7 @@
 
 規定！！！
 
-以 fi =min fj + ai * bj  ( j &lt; i ) 為例，且默認a[],b[]單調增
-
-
-...">
+以 fi =min fj + ai * ...">
   
   <title>斜率優化筆記 [ 愿 夜風柔吹 ]</title>
   
@@ -200,7 +198,7 @@
     <p class="page-title-sub">
       <span id="post-title-date">撰写于 2019-04-21</span>
       
-        <span id="post-title-updated">修改于 2019-04-22</span>
+        <span id="post-title-updated">修改于 2019-05-03</span>
       
       
       <span id="post-title-categories">分类
@@ -225,7 +223,8 @@
       
     </p>
     
-    <h3 id="簡簡簡介"><a href="#簡簡簡介" class="headerlink" title="簡簡簡介"></a>簡簡簡介</h3><blockquote>
+    <h2 id="警告！！！"><a href="#警告！！！" class="headerlink" title="警告！！！"></a>警告！！！</h2><p>本篇讲的比较抽象，还可能有假，以学习历程和概念为主，建议删除</p>
+<h3 id="簡簡簡介"><a href="#簡簡簡介" class="headerlink" title="簡簡簡介"></a>簡簡簡介</h3><blockquote>
 <ul>
 <li>用來將在轉移試遵循一次函數的dp快速找到最優決策點加速轉移</li>
 </ul>
@@ -260,6 +259,7 @@
 <h3 id="前排提醒"><a href="#前排提醒" class="headerlink" title="前排提醒"></a>前排提醒</h3><blockquote>
 <ul>
 <li>帶著一下幾句話食用！</li>
+<li>注意是min还是max</li>
 <li>希望以不等式角度為主，而不是幾何</li>
 <li>羅列每一步的轉移式 </li>
 <li>可以建立決策點坐標系，決策點決策範圍數軸</li>
@@ -289,6 +289,8 @@
 <li>當f[]很大時，需要寫高精度，甚至接FFT（自己瞎嗶</li>
 </ul>
 </blockquote>
+<h3 id="附"><a href="#附" class="headerlink" title="附"></a>附</h3><p> NOIP2018 普及 T3 斜率优化代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">const</span> ll N=<span class="number">5e6</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> C getchar()-48</span></span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ll s=<span class="number">0</span>,t=<span class="number">1</span>,k=C;</span><br><span class="line">  <span class="keyword">for</span> (;k&lt;<span class="number">0</span>||<span class="number">9</span>&lt;k;k=C) <span class="keyword">if</span> (k==<span class="number">-3</span>) t=<span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span> (;<span class="number">0</span>&lt;=k&amp;&amp;k&lt;=<span class="number">9</span>;k=C) s=(s&lt;&lt;<span class="number">1</span>)+(s&lt;&lt;<span class="number">3</span>)+k;</span><br><span class="line">  <span class="keyword">return</span> s*t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  ll n,m;</span><br><span class="line">  ll a[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">in</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">  <span class="keyword">for</span> (ll i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    a[i]=read()+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  ll T;</span><br><span class="line">  ll p[N],t[N],s[N],v[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pre</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  sort(a+<span class="number">1</span>,a+n+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">for</span> (ll i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    <span class="keyword">for</span> (ll j=<span class="number">0</span>;j&lt;m;++j)</span><br><span class="line">      <span class="keyword">if</span> (!v[a[i]+j])</span><br><span class="line">        v[a[i]+j]=++T,</span><br><span class="line">        p[T]=a[i]+j;</span><br><span class="line">  <span class="keyword">for</span> (ll i=<span class="number">0</span>,j=<span class="number">1</span>;++i&lt;=T;)</span><br><span class="line">    &#123;</span><br><span class="line">      s[i]=s[i<span class="number">-1</span>];</span><br><span class="line">      t[i]=t[i<span class="number">-1</span>];</span><br><span class="line">      <span class="keyword">while</span> (a[j]==p[i])</span><br><span class="line">        s[i]+=a[j],++t[i],++j;</span><br><span class="line">    &#125;</span><br><span class="line">  p[T+<span class="number">1</span>]=a[n]+m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  ll A=<span class="number">1e9</span>;</span><br><span class="line">  ll f[N],q[N],z[N];</span><br><span class="line">  ll ql,qr,zl=<span class="number">1</span>,zr;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GA(i) (t[i])</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GB(i) (-f[i]-s[i])</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GF(j,i) (f[j]+(t[i]-t[j])*p[i]-(s[i]-s[j]))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CA(i,j) (GA(i)-GA(j))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CB(i,j) (GB(i)-GB(j))</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ql=qr=q[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (ll i=<span class="number">0</span>;++i&lt;=T;)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> (qr-ql&amp;&amp;GF(q[ql],i)&gt;=GF(q[ql+<span class="number">1</span>],i)) ++ql;</span><br><span class="line">      f[i]=GF(q[ql],i);</span><br><span class="line">      z[++zr]=i;</span><br><span class="line">      <span class="keyword">while</span> (zl&lt;=zr&amp;&amp;p[z[zl]]&lt;=p[i+<span class="number">1</span>]-m)</span><br><span class="line">        &#123;</span><br><span class="line">          ll j=z[zl];</span><br><span class="line">          <span class="keyword">while</span> (qr-ql&amp;&amp;CA(q[qr],j)*CB(q[qr],q[qr<span class="number">-1</span>])&gt;=CA(q[qr<span class="number">-1</span>],q[qr])*CB(j,q[qr])) --qr;</span><br><span class="line">          q[++qr]=j;</span><br><span class="line">          ++zl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">for</span> (ll i=v[a[n]];i&lt;=T;++i)</span><br><span class="line">    A=min(A,f[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;A;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  freopen(<span class="string">"bus.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">  freopen(<span class="string">"bus.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">  in();</span><br><span class="line">  pre();</span><br><span class="line">  wor();</span><br><span class="line">  out();</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
   </article>
   <div class="random-toc-area">
@@ -296,7 +298,7 @@
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#簡簡簡介"><span class="toc-text">簡簡簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用條件"><span class="toc-text">使用條件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#學習建議"><span class="toc-text">學習建議</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#規定！！！"><span class="toc-text">規定！！！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#假變形過程"><span class="toc-text">假變形過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前排提醒"><span class="toc-text">前排提醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#真變形過程"><span class="toc-text">真變形過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拓展"><span class="toc-text">拓展</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#警告！！！"><span class="toc-text">警告！！！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#簡簡簡介"><span class="toc-text">簡簡簡介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用條件"><span class="toc-text">使用條件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#學習建議"><span class="toc-text">學習建議</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#規定！！！"><span class="toc-text">規定！！！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#假變形過程"><span class="toc-text">假變形過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前排提醒"><span class="toc-text">前排提醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#真變形過程"><span class="toc-text">真變形過程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拓展"><span class="toc-text">拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附"><span class="toc-text">附</span></a></li></ol></li></ol>
   </div>
 </div>
 
@@ -335,7 +337,7 @@
   
   <div class="theme-info">
       <div class="powered-by"></div>
-      <span class="post-count">Zhauku一共写了14k个字呢</span>
+      <span class="post-count">Zhauku一共写了15.6k个字呢</span>
       
   
 </div>
