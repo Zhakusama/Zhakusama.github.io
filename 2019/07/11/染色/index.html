@@ -1,0 +1,446 @@
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="Z_Haku">
+  
+  
+  
+  
+    <meta name="description" content="前記 不好意思考場上比較自閉，到晚上才發現題目看錯
+
+
+
+
+题解
+這題有個巧妙的技巧
+坐标系旋转45度，曼哈頓距離轉切比雪夫距離QAQ
+
+我们发现所有棋子都被一个大矩形框起来了
+那么最后划分为的点集必定分别被对角的小矩形框起来
+我们贪心的决定每个棋子所属的小矩形
+方案數就隨便考慮一下
+複雜度O(n)
+具體見代碼
+
+
+代码123456789101112131415161718192021222...">
+  
+  <title>染色 [ 愿 夜風柔吹 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/logo2.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"> 
+  <style>
+    .pace .pace-progress {
+    	background: #FF00FF; /*进度条颜色*/
+		height: 3px;
+	}
+	.pace .pace-progress-inner {
+    	box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/ 
+	}
+	.pace .pace-activity {
+	     border-top-color: #1E92FB;    /*上边框颜色*/
+		 border-left-color: #1E92FB;    /*左边框颜色*/
+	}
+  </style>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+<body>
+
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+ <script type="text/javascript" src="/js/src/cursor-effects.js"></script>
+ 
+
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2019/07/08/断更声明/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        断更声明
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+          <div id="homelink">愿 夜風柔吹</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>染色</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2019-07-11</span>
+      
+        <span id="post-title-updated">修改于 2019-07-11</span>
+      
+      
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/關於OI/">關於OI</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/貪心/">貪心</a>
+      
+        
+          /
+        
+        
+        <a href="/tags/曼哈頓轉切比雪夫/">曼哈頓轉切比雪夫</a>
+      
+      </span>
+      
+    </p>
+    
+    <h4 id="前記"><a href="#前記" class="headerlink" title="前記"></a>前記</h4><p> <del>不好意思考場上比較自閉，到晚上才發現題目看錯</del></p>
+<hr>
+<p><img src="/2019/07/11/染色/a.png" alt="a"></p>
+<p><img src="/2019/07/11/染色/b.png" alt="b"></p>
+<hr>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><blockquote>
+<p>這題有個巧妙的技巧</p>
+<p>坐标系旋转45度，曼哈頓距離轉切比雪夫距離QAQ</p>
+<p><img src="/2019/07/11/染色/c.png" alt="c"></p>
+<p>我们发现所有棋子都被一个大矩形框起来了</p>
+<p>那么最后划分为的点集必定分别被对角的小矩形框起来</p>
+<p>我们贪心的决定每个棋子所属的小矩形</p>
+<p>方案數就隨便考慮一下</p>
+<p>複雜度O(n)</p>
+<p>具體見代碼</p>
+</blockquote>
+<hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>,N=<span class="number">1e6</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> C getchar()-48</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> s=<span class="number">0</span>,t=<span class="number">1</span>,k=C;</span><br><span class="line">  <span class="keyword">for</span> (;k&lt;<span class="number">0</span>||<span class="number">9</span>&lt;k;k=C) <span class="keyword">if</span> (k==<span class="number">-3</span>) t=<span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">for</span> (;<span class="number">0</span>&lt;=k&amp;&amp;k&lt;=<span class="number">9</span>;k=C) s=(s&lt;&lt;<span class="number">1</span>)+(s&lt;&lt;<span class="number">3</span>)+k;</span><br><span class="line">  <span class="keyword">return</span> s*t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">hh</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">      <span class="keyword">int</span> x,y;</span><br><span class="line">    &#125;a[N];</span><br><span class="line">  <span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">in</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>,x,y;++i&lt;=n;)</span><br><span class="line">    x=read(),y=read(),</span><br><span class="line">	  a[i].x=x+y,a[i].y=x-y;<span class="comment">//曼哈頓轉切比雪夫</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(hh A,hh B)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> max(<span class="built_in">abs</span>(A.x-B.x),<span class="built_in">abs</span>(A.y-B.y));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> A,S,L,R,U,D,KB,KW;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  L=D=mod;</span><br><span class="line">  R=U=-mod;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;++i&lt;=n;)<span class="comment">//找四向邊界</span></span><br><span class="line">		L=min(L,a[i].x),R=max(R,a[i].x),</span><br><span class="line">		U=max(U,a[i].y),D=min(D,a[i].y);</span><br><span class="line">	hh LU=(hh)&#123;L,U&#125;,LD=(hh)&#123;L,D&#125;,</span><br><span class="line">     RU=(hh)&#123;R,U&#125;,RD=(hh)&#123;R,D&#125;;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;++i&lt;=n;)<span class="comment">//貪心</span></span><br><span class="line">		KB=max(KB,min(cal(a[i],LU),cal(a[i],RD))),</span><br><span class="line">		KW=max(KW,min(cal(a[i],LD),cal(a[i],RU)));</span><br><span class="line">	A=min(KB,KW);</span><br><span class="line">    <span class="comment">//統計個數</span></span><br><span class="line">	S=(KB==KW&amp;&amp;R-L&gt;A&amp;&amp;U-D&gt;A) ? <span class="number">4</span> : <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;++i&lt;=n;)</span><br><span class="line">    &#123;</span><br><span class="line">		  <span class="keyword">if</span> (A==KB&amp;&amp;cal(a[i],LU)&gt;A&amp;&amp;cal(a[i],RD)&gt;A) <span class="keyword">continue</span>;</span><br><span class="line">		  <span class="keyword">if</span> (A==KW&amp;&amp;cal(a[i],LD)&gt;A&amp;&amp;cal(a[i],RU)&gt;A) <span class="keyword">continue</span>;</span><br><span class="line">	   	S&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">out</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">cout</span>&lt;&lt;A&lt;&lt;<span class="string">' '</span>&lt;&lt;S&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	freopen(<span class="string">"color.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"color.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">  in();</span><br><span class="line">  wor(); </span><br><span class="line">  out();</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h6 id="注：“語文是一切學科的發動機”（霧）"><a href="#注：“語文是一切學科的發動機”（霧）" class="headerlink" title="注：“語文是一切學科的發動機”（霧）"></a>注：“語文是一切學科的發動機”（霧）</h6>
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前記"><span class="toc-text">前記</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#题解"><span class="toc-text">题解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#注：“語文是一切學科的發動機”（霧）"><span class="toc-text">注：“語文是一切學科的發動機”（霧）</span></a></li></ol></li>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2019/07/08/断更声明/" class="next">下一篇 断更声明 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+  
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by Z_Haku using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+  
+  <div class="theme-info">
+      <div class="powered-by"></div>
+      <span class="post-count">__Zhauku一共写了16.2k个字呢</span>
+      
+  
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=28445796&auto=1&height=32"></iframe>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://zhakusama.github.io/2019/02/17/%E5%95%9F%E7%A8%8B%E5%98%BB%E5%98%BB/avatar.jpg">
+    <p id="description">✧ 為你譜辰光熹微 ✧</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/Zhakusama">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="mailto:yowanehakusama@qq.com">
+        
+          M
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+    
+      backgroundImages.push('https://zhakusama.github.io/2019/07/08/%E6%96%AD%E6%9B%B4%E5%A3%B0%E6%98%8E/qaq.jpeg');
+    
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload�Image":true,"transition":["flash"],"timer":true,"delay":300000,"shuffle":false,"count":12};
+var unsplashConfig = {"blur":true,"gravity":"center","greyscale":true};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"position":"left","width":10000,"height":250,"jsonPath":"/live2dw/assets/nepgear.model.json"},"mobile":{"show":true},"log":false});</script></body>
+</html>
+
+
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+
+
