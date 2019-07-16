@@ -71,7 +71,7 @@
 
     function Particle() {
         this.character = "*";
-        this.lifeSpan = 250;
+        this.lifeSpan = 200;
         this.initialStyles = {
             "position": "fixed",
             "top": "0",
