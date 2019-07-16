@@ -2,10 +2,11 @@
  * Cursor Effects
  * 90's cursors collection
  * https://github.com/tholman/cursor-effects
+ "#D61C59", "#E7D84B", "#1B8798"
  */
 
 (function fairyDustCursor() {
-    var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"]
+    var possibleColors = [ "#FFFFFF", "#FFFFFF", "#FFFFFF"]
     var width = window.innerWidth;
     var height = window.innerHeight;
     var cursor = {
@@ -70,7 +71,7 @@
 
     function Particle() {
         this.character = "*";
-        this.lifeSpan = 200;
+        this.lifeSpan = 250;
         this.initialStyles = {
             "position": "fixed",
             "top": "0",
@@ -78,7 +79,8 @@
             "pointerEvents": "none",
             "z-index": "99999999",
             "fontSize": "16px",
-            "will-change": "transform"
+            "will-change": "transform",
+			"opacity": "0.7"
         };
         this.init = function (x, y, color) {
             this.velocity = {
