@@ -6,7 +6,7 @@
  */
 
 (function fairyDustCursor() {
-    var possibleColors = [ "#FFFFFF", "#FFFFFF", "#FFFFFF"]
+    var possibleColors = [ "#B23AEE", "#E7D84B", "#1B8798"]
     var width = window.innerWidth;
     var height = window.innerHeight;
     var cursor = {
@@ -80,7 +80,7 @@
             "z-index": "99999999",
             "fontSize": "16px",
             "will-change": "transform",
-			"opacity": "0.7"
+			"opacity": "1"
         };
         this.init = function (x, y, color) {
             this.velocity = {
